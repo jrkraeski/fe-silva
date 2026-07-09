@@ -1,0 +1,2495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fê Silva — Identidade Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#6B2737;
+    --wine-dark:#4A1828;
+    --wine-light:#9B4A5A;
+    --terra:#C4704A;
+    --terra-light:#E8A882;
+    --gold:#B8924A;
+    --gold-soft:#d8b878;
+    --cream:#F5EDE3;
+    --warm:#FBF7F3;
+    --ink:#2C1A14;
+    --ink-soft:#6b5147;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:'Jost',sans-serif;background:#f0eee9;color:#2C1A14}
+  .ab,.ab *,.ab *::before,.ab *::after{box-sizing:border-box}
+
+  /* ============== shared artboard primitives ============== */
+  .ab{position:relative;overflow:hidden;font-family:'Jost',sans-serif;color:var(--ink);}
+  .ab.cream{background:var(--cream)}
+  .ab.warm{background:var(--warm)}
+  .ab.wine{background:var(--wine);color:var(--cream)}
+  .ab.wine-dark{background:var(--wine-dark);color:var(--cream)}
+  .ab.terra{background:var(--terra);color:var(--warm)}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .italic{font-style:italic}
+  .it{font-family:'Cormorant Garamond',serif;font-style:italic}
+
+  /* paper texture — subtle */
+  .paper{
+    background-image:
+      radial-gradient(at 12% 8%, rgba(196,112,74,0.07) 0px, transparent 50%),
+      radial-gradient(at 88% 92%, rgba(107,39,55,0.06) 0px, transparent 50%);
+  }
+  .dark-paper{
+    background-image:
+      radial-gradient(at 12% 8%, rgba(184,146,74,0.12) 0px, transparent 55%),
+      radial-gradient(at 88% 92%, rgba(196,112,74,0.10) 0px, transparent 55%);
+  }
+
+  /* The "Fê" lockup — used everywhere */
+  .lk{display:inline-flex;align-items:baseline;line-height:1;font-family:'Cormorant Garamond',serif;letter-spacing:.005em}
+  .lk .fe{font-style:italic;color:var(--gold);font-weight:600}
+  .lk .silva{color:var(--wine-dark);font-weight:500;margin-left:.18em}
+  .lk.on-dark .silva{color:var(--cream)}
+  .lk .dot{
+    width:.18em;height:.18em;border-radius:50%;
+    background:var(--terra);display:inline-block;
+    margin:0 .22em .12em .22em;align-self:center;
+  }
+  .lk .amp{color:var(--gold);font-style:italic;font-weight:400}
+  .lk .tag{
+    font-family:'Jost',sans-serif;font-size:.18em;
+    letter-spacing:.32em;text-transform:uppercase;
+    color:var(--ink-soft);font-weight:500;
+    margin-left:.6em;align-self:center;
+  }
+  .lk.on-dark .tag{color:rgba(245,237,227,.65)}
+
+  /* utility */
+  .row{display:flex}
+  .col{display:flex;flex-direction:column}
+  .center{display:grid;place-items:center}
+  .between{display:flex;justify-content:space-between;align-items:center}
+  .hr{height:1px;background:rgba(44,26,20,.16)}
+  .hr.gold{background:var(--gold)}
+  .hr.cream{background:rgba(245,237,227,.18)}
+  .eyebrow{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--wine);font-weight:500;font-family:'Jost',sans-serif}
+  .eyebrow.gold{color:var(--gold)}
+  .eyebrow.cream{color:rgba(245,237,227,.7)}
+  .eyebrow.terra{color:var(--terra)}
+
+  /* delicate botanical SVG container */
+  .botan svg{display:block}
+
+  /* shadow under artboards (for the canvas's natural feel) */
+  .dc-card{}
+</style>
+</head>
+<body>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+
+// ============ DESIGN CANVAS ============
+function DesignCanvas({ children }) {
+  const sections = ['marca','cartao','flyer','ig-feed','ig-stories','perfil','destaques','papelaria'];
+  return (
+    <div style={{minHeight:'100vh',background:'#e8e5df',fontFamily:"'Jost',sans-serif"}}>
+      <div style={{
+        position:'sticky',top:0,zIndex:100,
+        background:'rgba(44,26,20,.97)',
+        padding:'0 32px',height:52,
+        display:'flex',alignItems:'center',gap:4,
+        borderBottom:'1px solid rgba(184,146,74,.25)',
+        overflowX:'auto',
+      }}>
+        <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontSize:22,color:'#B8924A',fontWeight:600,marginRight:16,flexShrink:0}}>Fê</span>
+        <span style={{fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.32em',textTransform:'uppercase',color:'rgba(245,237,227,.4)',marginRight:20,flexShrink:0}}>Identidade Visual</span>
+        {sections.map(id=>(
+          <button key={id} onClick={()=>{const el=document.getElementById('sec-'+id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}}
+            style={{background:'none',border:'none',cursor:'pointer',padding:'4px 10px',fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.22em',textTransform:'uppercase',color:'rgba(245,237,227,.6)',borderRadius:3,flexShrink:0,whiteSpace:'nowrap'}}
+          >{id.replace('-',' ')}</button>
+        ))}
+      </div>
+      <div style={{padding:'48px 40px 96px'}}>{children}</div>
+    </div>
+  );
+}
+
+function DCSection({ id, title, subtitle, children }) {
+  return (
+    <div id={'sec-'+id} style={{marginBottom:72}}>
+      <div style={{display:'flex',alignItems:'baseline',gap:16,marginBottom:28,paddingBottom:14,borderBottom:'1px solid rgba(44,26,20,.15)'}}>
+        <h2 style={{margin:0,fontFamily:"'Cormorant Garamond',serif",fontSize:34,fontWeight:500,color:'#4A1828',fontStyle:'italic'}}>{title}</h2>
+        {subtitle&&<span style={{fontFamily:"'Jost',sans-serif",fontSize:11,color:'#6B5147',letterSpacing:'.05em'}}>{subtitle}</span>}
+      </div>
+      <div style={{display:'flex',flexWrap:'wrap',gap:24,alignItems:'flex-start'}}>{children}</div>
+    </div>
+  );
+}
+
+function DCArtboard({ id, label, width, height, children }) {
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:6}}>
+      <div style={{width,height,position:'relative',boxShadow:'0 4px 20px rgba(44,26,20,.16)',borderRadius:4,overflow:'hidden',flexShrink:0}}>
+        {children}
+      </div>
+      <div style={{display:'flex',justifyContent:'space-between',padding:'0 2px'}}>
+        <span style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:'#6B5147',letterSpacing:'.06em'}}>{label}</span>
+        <span style={{fontFamily:'monospace',fontSize:9,color:'rgba(44,26,20,.3)'}}>{width}×{height}</span>
+      </div>
+    </div>
+  );
+}
+
+
+// ===== ATOMS =====
+// Shared atoms — logo lockup, botanical illustrations, icons, watermarks.
+
+// ============== LOCKUP (the main wordmark) ==============
+// Renders "Fê · Silva" with optional tagline below.
+// Props: size (em base), align ('start'|'center'), onDark (bool), withDot, tagBelow
+function Lockup({ size = 56, onDark = false, withDot = true, tagBelow = null, dotColor = null }) {
+  const dot = withDot ? (
+    <span className="dot" style={{ background: dotColor || '#C4704A' }}></span>
+  ) : null;
+  return (
+    <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', lineHeight: 1 }}>
+      <span className={'lk' + (onDark ? ' on-dark' : '')} style={{ fontSize: size }}>
+        <span className="fe">Fê</span>
+        {dot}
+        <span className="silva">Silva</span>
+      </span>
+      {tagBelow && (
+        <div style={{
+          marginTop: size * 0.30,
+          fontFamily: "'Jost', sans-serif",
+          fontSize: size * 0.15,
+          letterSpacing: '.36em',
+          textTransform: 'uppercase',
+          color: onDark ? 'rgba(245,237,227,.75)' : '#6b5147',
+          fontWeight: 500,
+          textAlign: 'center',
+        }}>
+          {tagBelow}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Stacked lockup: Fê italic huge on top, Silva below in caps
+function LockupStack({ size = 80, onDark = false }) {
+  return (
+    <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', lineHeight: 1, fontFamily: "'Cormorant Garamond', serif" }}>
+      <span style={{ fontStyle: 'italic', fontWeight: 600, color: '#B8924A', fontSize: size, letterSpacing: '-.01em' }}>Fê</span>
+      <div style={{
+        marginTop: size * 0.04, display: 'flex', alignItems: 'center', gap: size * 0.18,
+      }}>
+        <span style={{ height: 1, width: size * 0.4, background: onDark ? 'rgba(184,146,74,.55)' : 'rgba(184,146,74,.7)' }}></span>
+        <span style={{
+          fontFamily: "'Jost', sans-serif", fontSize: size * 0.16, letterSpacing: '.38em',
+          textTransform: 'uppercase', color: onDark ? '#F5EDE3' : '#4A1828', fontWeight: 500,
+        }}>Silva</span>
+        <span style={{ height: 1, width: size * 0.4, background: onDark ? 'rgba(184,146,74,.55)' : 'rgba(184,146,74,.7)' }}></span>
+      </div>
+    </div>
+  );
+}
+
+// Monogram "F" — italic, gold
+function MonogramF({ size = 200, color = '#B8924A', background = null }) {
+  return (
+    <div style={{
+      width: size, height: size, position: 'relative',
+      display: 'grid', placeItems: 'center',
+      background: background || 'transparent',
+      borderRadius: background ? '50%' : 0,
+    }}>
+      <span style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontStyle: 'italic', fontWeight: 500, color,
+        fontSize: size * 0.95, lineHeight: 1, letterSpacing: '-.02em',
+        transform: 'translateY(-2%)',
+      }}>F</span>
+    </div>
+  );
+}
+
+// ============== BOTANICAL SVGs ==============
+// Long stem with two pairs of leaves
+function StemTall({ size = 120, color = 'rgba(184,146,74,.55)', strokeWidth = 0.9 }) {
+  return (
+    <svg width={size} height={size * 3} viewBox="0 0 40 120" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round">
+      <path d="M20 0 C20 30, 20 60, 20 120" />
+      <path d="M20 30 C12 26, 6 22, 2 16 C8 18, 14 22, 20 30" fill={color} fillOpacity=".15" />
+      <path d="M20 36 C28 32, 34 28, 38 22 C32 24, 26 28, 20 36" fill={color} fillOpacity=".15" />
+      <path d="M20 64 C10 62, 4 60, 0 56 C6 56, 13 58, 20 64" fill={color} fillOpacity=".12" />
+      <path d="M20 72 C30 70, 36 68, 40 64 C34 64, 27 66, 20 72" fill={color} fillOpacity=".12" />
+    </svg>
+  );
+}
+
+// Curved branch motif (decorative corner ornament)
+function Branch({ size = 80, color = 'rgba(184,146,74,.7)', strokeWidth = 0.8 }) {
+  return (
+    <svg width={size * 2} height={size} viewBox="0 0 160 80" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round">
+      <path d="M0 70 C30 70, 70 60, 110 30 C130 15, 145 8, 158 5" />
+      <ellipse cx="40" cy="64" rx="9" ry="3.5" transform="rotate(-15 40 64)" fillOpacity=".15" fill={color} />
+      <ellipse cx="65" cy="55" rx="8" ry="3" transform="rotate(-25 65 55)" fillOpacity=".15" fill={color} />
+      <ellipse cx="90" cy="42" rx="8" ry="3" transform="rotate(-40 90 42)" fillOpacity=".15" fill={color} />
+      <ellipse cx="115" cy="25" rx="7" ry="2.6" transform="rotate(-55 115 25)" fillOpacity=".15" fill={color} />
+      <ellipse cx="138" cy="14" rx="6" ry="2.4" transform="rotate(-65 138 14)" fillOpacity=".15" fill={color} />
+    </svg>
+  );
+}
+
+// Single small leaf
+function Leaf({ size = 18, color = '#C4704A', strokeWidth = 1.4 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round">
+      <path d="M12 22c0-6 4-12 10-12-2 6-6 12-10 12z" />
+      <path d="M12 22c0-6-4-12-10-12 2 6 6 12 10 12z" />
+    </svg>
+  );
+}
+
+// Thin gold divider (line + diamond + line)
+function Divider({ width = '60%', color = '#B8924A', diamond = true }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width }}>
+      <span style={{ flex: 1, height: 1, background: color, opacity: 0.5 }}></span>
+      {diamond && <span style={{
+        width: 5, height: 5, background: color, transform: 'rotate(45deg)',
+      }}></span>}
+      <span style={{ flex: 1, height: 1, background: color, opacity: 0.5 }}></span>
+    </div>
+  );
+}
+
+// Image placeholder with subtle stripes + label
+function ImagePlaceholder({ children = 'product shot', tone = 'warm', height = '100%', width = '100%', radius = 0 }) {
+  const palettes = {
+    warm: { bg: '#E8A882', stripe: 'rgba(74,24,40,0.08)', text: 'rgba(74,24,40,0.55)' },
+    cream: { bg: '#F5EDE3', stripe: 'rgba(107,39,55,0.08)', text: 'rgba(107,39,55,0.55)' },
+    wine: { bg: '#4A1828', stripe: 'rgba(245,237,227,0.06)', text: 'rgba(245,237,227,0.45)' },
+    terra: { bg: '#C4704A', stripe: 'rgba(44,26,20,0.10)', text: 'rgba(44,26,20,0.55)' },
+  };
+  const p = palettes[tone] || palettes.warm;
+  return (
+    <div style={{
+      width, height, borderRadius: radius,
+      background: p.bg,
+      backgroundImage: `repeating-linear-gradient(135deg, transparent 0 12px, ${p.stripe} 12px 13px)`,
+      display: 'grid', placeItems: 'center',
+      fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+      fontSize: 11, letterSpacing: '.05em', color: p.text,
+      textAlign: 'center', padding: 12, overflow: 'hidden',
+    }}>
+      <span>· {children} ·</span>
+    </div>
+  );
+}
+
+// WhatsApp glyph
+function WAGlyph({ size = 16, color = '#fff' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+      <path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5zM12 20.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.9.9-2.7-.2-.3a8.2 8.2 0 1 1 6.6 3.5zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4.2-.4c.1-.1 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4 0-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.5 3.9 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1z"/>
+    </svg>
+  );
+}
+
+// IG glyph
+function IGGlyph({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round">
+      <rect x="3" y="3" width="18" height="18" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r=".8" fill={color}/>
+    </svg>
+  );
+}
+
+// Pin / location glyph
+function PinGlyph({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round">
+      <path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11z"/>
+      <circle cx="12" cy="10" r="2.5"/>
+    </svg>
+  );
+}
+
+// Globe (site) glyph
+function GlobeGlyph({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>
+    </svg>
+  );
+}
+
+// QR code component — uses window.qrcode (qrcode-generator)
+function QRCodeSVG({ data, size = 100, fg = '#2C1A14', bg = 'transparent', padding = 0 }) {
+  const [mat, setMat] = React.useState(null);
+  React.useEffect(() => {
+    if (typeof window.qrcode !== 'function') {
+      const t = setTimeout(() => setMat('retry'), 80);
+      return () => clearTimeout(t);
+    }
+    try {
+      const qr = window.qrcode(0, 'M');
+      qr.addData(data);
+      qr.make();
+      const count = qr.getModuleCount();
+      const cells = [];
+      for (let r = 0; r < count; r++) {
+        for (let c = 0; c < count; c++) {
+          if (qr.isDark(r, c)) cells.push([c, r]);
+        }
+      }
+      setMat({ count, cells });
+    } catch (e) {
+      setMat(null);
+    }
+  }, [data, mat === 'retry' ? Math.random() : 0]);
+  if (!mat || mat === 'retry') {
+    return <div style={{ width: size, height: size, background: bg }}></div>;
+  }
+  const { count, cells } = mat;
+  const total = count + padding * 2;
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${total} ${total}`} shapeRendering="crispEdges">
+      {bg !== 'transparent' && <rect width={total} height={total} fill={bg} />}
+      {cells.map(([x, y], i) => (
+        <rect key={i} x={x + padding} y={y + padding} width="1" height="1" fill={fg} />
+      ))}
+    </svg>
+  );
+}
+
+Object.assign(window, {
+  Lockup, LockupStack, MonogramF,
+  StemTall, Branch, Leaf, Divider, ImagePlaceholder,
+  WAGlyph, IGGlyph, PinGlyph, GlobeGlyph,
+  QRCodeSVG,
+});
+
+
+// ===== MARCA =====
+// MARCA — logotipo, monograma, selo, paleta, tipografia
+
+function LockupPrimary(){
+  return (
+    <div className="ab cream paper" style={{width:'100%',height:'100%',position:'relative',display:'grid',placeItems:'center'}}>
+      <div style={{position:'relative',zIndex:2,display:'flex',flexDirection:'column',alignItems:'center'}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",
+          fontSize:120,lineHeight:1,letterSpacing:'.005em',
+          display:'inline-flex',alignItems:'baseline',
+        }}>
+          <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+          <span style={{
+            width:7,height:7,borderRadius:'50%',background:'#C4704A',
+            margin:'0 16px 18px 16px',alignSelf:'center',
+          }}></span>
+          <span style={{color:'#4A1828',fontWeight:500}}>Silva</span>
+        </span>
+        <div style={{display:'flex',alignItems:'center',gap:14,marginTop:18,whiteSpace:'nowrap'}}>
+          <span style={{width:48,height:1,background:'#B8924A',opacity:.55,flex:'0 0 48px'}}></span>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:13,letterSpacing:'.42em',
+            textTransform:'uppercase',color:'#6b5147',fontWeight:500,
+          whiteSpace:'nowrap'}}>Estética &amp; Bem-Estar</span>
+          <span style={{width:48,height:1,background:'#B8924A',opacity:.55,flex:'0 0 48px'}}></span>
+        </div>
+      </div>
+      {/* Corner ornaments */}
+      <div style={{position:'absolute',top:18,left:18}}>
+        <span style={{fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.32em',textTransform:'uppercase',color:'#9B4A5A',whiteSpace:'nowrap'}}>Lockup · principal</span>
+      </div>
+      <div style={{position:'absolute',bottom:18,right:18,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontSize:14,color:'#B8924A'}}>desde 2004</div>
+    </div>
+  );
+}
+
+function LockupStacked(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{width:'100%',height:'100%',position:'relative',display:'grid',placeItems:'center'}}>
+      <div style={{position:'relative',zIndex:2,display:'flex',flexDirection:'column',alignItems:'center',gap:0}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontWeight:500,color:'#B8924A',fontSize:200,lineHeight:.95,letterSpacing:'-.02em',
+        }}>Fê</span>
+        <div style={{display:'flex',alignItems:'center',gap:14,marginTop:20}}>
+          <span style={{width:32,height:1,background:'rgba(184,146,74,.6)'}}></span>
+          <span style={{width:5,height:5,background:'#B8924A',transform:'rotate(45deg)'}}></span>
+          <span style={{width:32,height:1,background:'rgba(184,146,74,.6)'}}></span>
+        </div>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:18,letterSpacing:'.44em',
+          textTransform:'uppercase',color:'#F5EDE3',fontWeight:500,marginTop:18,whiteSpace:'nowrap',
+        }}>Silva</span>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:18,color:'rgba(232,168,130,.85)',marginTop:18,letterSpacing:'.04em',whiteSpace:'nowrap',
+        }}>estética &amp; bem-estar</span>
+      </div>
+      <div style={{position:'absolute',bottom:18,left:0,right:0,textAlign:'center',
+        fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.32em',textTransform:'uppercase',color:'rgba(232,168,130,.55)',whiteSpace:'nowrap'}}>
+        Florianópolis · SC
+      </div>
+    </div>
+  );
+}
+
+function MonogramaF(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{width:'100%',height:'100%',position:'relative',display:'grid',placeItems:'center'}}>
+      {/* Thin ring */}
+      <div style={{
+        position:'absolute',top:30,left:30,right:30,bottom:30,
+        border:'1px solid rgba(184,146,74,.35)',borderRadius:'50%',
+      }}></div>
+      <div style={{position:'relative',width:'70%',height:'70%',display:'grid',placeItems:'center'}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontWeight:500,color:'#B8924A',fontSize:260,lineHeight:1,letterSpacing:'-.02em',
+          transform:'translateY(-2%)',
+        }}>F</span>
+      </div>
+      <div style={{position:'absolute',bottom:34,left:0,right:0,textAlign:'center'}}>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:10,letterSpacing:'.42em',
+          textTransform:'uppercase',color:'rgba(232,168,130,.7)',fontWeight:500,
+        whiteSpace:'nowrap'}}>Monograma</span>
+      </div>
+    </div>
+  );
+}
+
+function Selo22(){
+  // Circular selo with F monogram in center, rotating text around the edge.
+  return (
+    <div className="ab cream paper" style={{width:'100%',height:'100%',position:'relative',display:'grid',placeItems:'center'}}>
+      <div style={{position:'relative',width:320,height:320}}>
+        <svg width="320" height="320" viewBox="0 0 320 320" style={{position:'absolute',inset:0}}>
+          <defs>
+            <path id="seloCircle" d="M 160,160 m -130,0 a 130,130 0 1,1 260,0 a 130,130 0 1,1 -260,0" />
+          </defs>
+          <circle cx="160" cy="160" r="148" fill="none" stroke="#B8924A" strokeWidth="0.8" opacity="0.5"/>
+          <circle cx="160" cy="160" r="118" fill="none" stroke="#B8924A" strokeWidth="0.6" opacity="0.35"/>
+          <text fontFamily="Jost, sans-serif" fontSize="11" letterSpacing="5" fill="#6B2737" fontWeight="500">
+            <textPath href="#seloCircle" startOffset="0">
+              FÊ SILVA · ESTÉTICA &amp; BEM-ESTAR · CENTRO · FLORIANÓPOLIS · DESDE 2004 ·
+            </textPath>
+          </text>
+          {[0,90,180,270].map(a=>{
+            const rad=(a-90)*Math.PI/180; const r=118;
+            const x=160+r*Math.cos(rad); const y=160+r*Math.sin(rad);
+            return <rect key={a} x={x-2.5} y={y-2.5} width="5" height="5" fill="#C4704A" transform={`rotate(45 ${x} ${y})`}/>
+          })}
+        </svg>
+        {/* center F monogram */}
+        <div style={{
+          position:'absolute',inset:0,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',
+        }}>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:500,
+            fontSize:130,lineHeight:1,color:'#B8924A',letterSpacing:'-.04em',
+            transform:'translateY(-4%)',
+          }}>F</span>
+          <div style={{display:'flex',alignItems:'center',gap:8,marginTop:2}}>
+            <span style={{width:18,height:1,background:'#B8924A',opacity:.55}}></span>
+            <span style={{
+              fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.38em',
+              textTransform:'uppercase',color:'#4A1828',fontWeight:500,whiteSpace:'nowrap',
+            }}>Cuidado</span>
+            <span style={{width:18,height:1,background:'#B8924A',opacity:.55}}></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LockupMini(){
+  return (
+    <div className="ab warm" style={{width:'100%',height:'100%',display:'grid',placeItems:'center',padding:'0 28px'}}>
+      <span style={{
+        fontFamily:"'Cormorant Garamond',serif",fontSize:48,lineHeight:1,
+        display:'inline-flex',alignItems:'baseline',whiteSpace:'nowrap',
+      }}>
+        <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+        <span style={{width:4,height:4,borderRadius:'50%',background:'#C4704A',margin:'0 8px 8px',alignSelf:'center'}}></span>
+        <span style={{color:'#4A1828',fontWeight:500}}>Silva</span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:11,letterSpacing:'.34em',
+          textTransform:'uppercase',color:'#6b5147',fontWeight:500,
+          marginLeft:20,paddingLeft:20,borderLeft:'1px solid rgba(184,146,74,.5)',alignSelf:'center',
+        whiteSpace:'nowrap'}}>Estética &amp; Bem-Estar</span>
+      </span>
+    </div>
+  );
+}
+
+function Paleta(){
+  const swatches = [
+    {name:'Vinho principal',hex:'#6B2737',role:'dominante, botões'},
+    {name:'Vinho escuro',hex:'#4A1828',role:'fundos, footer',light:false},
+    {name:'Vinho claro',hex:'#9B4A5A',role:'hover, acentos'},
+    {name:'Terracota',hex:'#C4704A',role:'calor, vegano'},
+    {name:'Terracota claro',hex:'#E8A882',role:'detalhes'},
+    {name:'Dourado',hex:'#B8924A',role:'tradição, valor'},
+    {name:'Creme',hex:'#F5EDE3',role:'fundo secundário',light:true},
+    {name:'Branco quente',hex:'#FBF7F3',role:'fundo principal',light:true},
+    {name:'Texto',hex:'#2C1A14',role:'corpo'},
+    {name:'Texto suave',hex:'#6B5147',role:'secundário'},
+  ];
+  return (
+    <div className="ab warm paper" style={{width:'100%',height:'100%',padding:'30px 36px'}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:18}}>
+        <div style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:30,fontWeight:500,color:'#4A1828',
+        }}>Paleta <em style={{color:'#B8924A',fontWeight:400}}>cromática</em></div>
+        <span className="eyebrow" style={{color:'#9B4A5A'}}>10 cores · uso conforme contexto</span>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(10,1fr)',gap:8,height:'calc(100% - 70px)'}}>
+        {swatches.map(s=>(
+          <div key={s.hex} style={{display:'flex',flexDirection:'column'}}>
+            <div style={{
+              flex:1,background:s.hex,borderRadius:6,position:'relative',
+              border: s.light ? '1px solid rgba(44,26,20,.1)' : 'none',
+            }}>
+              <span style={{
+                position:'absolute',bottom:8,left:10,
+                fontFamily:'ui-monospace,Menlo,monospace',fontSize:10,
+                color: s.light ? '#4A1828' : 'rgba(245,237,227,.85)',letterSpacing:'.04em',
+              }}>{s.hex}</span>
+            </div>
+            <div style={{marginTop:8,fontFamily:"'Jost',sans-serif",fontSize:10,color:'#2C1A14',fontWeight:500,lineHeight:1.2}}>{s.name}</div>
+            <div style={{fontSize:9,color:'#6B5147',marginTop:2,lineHeight:1.3}}>{s.role}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Tipografia(){
+  return (
+    <div className="ab warm paper" style={{width:'100%',height:'100%',padding:'36px 44px',display:'grid',gridTemplateColumns:'1fr 1fr',gap:48}}>
+      {/* Cormorant Garamond */}
+      <div style={{display:'flex',flexDirection:'column',gap:14}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+          <span className="eyebrow" style={{color:'#9B4A5A'}}>Display · títulos</span>
+          <span style={{fontFamily:'ui-monospace,Menlo,monospace',fontSize:10,color:'#6B5147'}}>Cormorant Garamond</span>
+        </div>
+        <div style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:500,
+          color:'#B8924A',fontSize:160,lineHeight:.9,letterSpacing:'-.02em',
+        }}>Aa</div>
+        <div style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:32,color:'#4A1828',
+          fontWeight:500,lineHeight:1.05,
+        }}>Cuidar é um <em style={{color:'#B8924A'}}>ofício</em><br/>que se aprende devagar.</div>
+        <div style={{display:'flex',gap:18,marginTop:10,paddingTop:14,borderTop:'1px solid rgba(44,26,20,.1)',
+          fontFamily:'ui-monospace,Menlo,monospace',fontSize:10,color:'#6B5147',flexWrap:'wrap'}}>
+          <span>Light 300</span><span>Regular 400</span><span>Medium 500</span><span style={{color:'#B8924A'}}>Italic</span>
+        </div>
+      </div>
+
+      {/* Jost */}
+      <div style={{display:'flex',flexDirection:'column',gap:14}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+          <span className="eyebrow" style={{color:'#9B4A5A'}}>UI · corpo de texto</span>
+          <span style={{fontFamily:'ui-monospace,Menlo,monospace',fontSize:10,color:'#6B5147'}}>Jost</span>
+        </div>
+        <div style={{
+          fontFamily:"'Jost',sans-serif",fontWeight:500,
+          color:'#6B2737',fontSize:160,lineHeight:.9,letterSpacing:'-.04em',
+        }}>Aa</div>
+        <div style={{fontFamily:"'Jost',sans-serif",fontSize:15,color:'#2C1A14',lineHeight:1.65}}>
+          Quase vinte anos cuidando de você. Um espaço pequeno, próprio e cuidado nos detalhes — onde técnica apurada, produtos veganos e tempo de gente se encontram.
+        </div>
+        <div style={{display:'flex',gap:18,marginTop:10,paddingTop:14,borderTop:'1px solid rgba(44,26,20,.1)',
+          fontFamily:'ui-monospace,Menlo,monospace',fontSize:10,color:'#6B5147',flexWrap:'wrap'}}>
+          <span>Light 300</span><span>Regular 400</span><span>Medium 500</span><span>SemiBold 600</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, {
+  LockupPrimary, LockupStacked, MonogramaF, Selo22, LockupMini, Paleta, Tipografia,
+});
+
+
+// ===== CARTAO =====
+// CARTÃO DE VISITA — 9 × 5 cm · duas direções (A: frente vinho, B: frente creme)
+
+// Direction A — Frente: vinho escuro, monograma F dourado grande
+function CartaoAFrente(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',padding:30,
+      display:'flex',alignItems:'center',gap:24,
+    }}>
+      {/* corner ornaments */}
+      <div style={{position:'absolute',top:24,left:24,display:'flex',alignItems:'center',gap:8}}>
+        <span style={{width:5,height:5,background:'#B8924A',transform:'rotate(45deg)'}}></span>
+        <span style={{width:24,height:1,background:'rgba(184,146,74,.7)'}}></span>
+      </div>
+      <div style={{position:'absolute',bottom:24,right:24,display:'flex',alignItems:'center',gap:8}}>
+        <span style={{width:24,height:1,background:'rgba(184,146,74,.7)'}}></span>
+        <span style={{width:5,height:5,background:'#B8924A',transform:'rotate(45deg)'}}></span>
+      </div>
+
+      {/* LEFT — F monogram */}
+      <div style={{flex:'0 0 auto',position:'relative',width:170,height:170,zIndex:1}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:500,
+          color:'#B8924A',fontSize:200,lineHeight:1,letterSpacing:'-.02em',
+          position:'absolute',top:-30,left:-10,
+        }}>F</span>
+      </div>
+
+      {/* RIGHT — text block */}
+      <div style={{
+        flex:'1 1 auto',minWidth:0,zIndex:1,
+        display:'flex',flexDirection:'column',alignItems:'flex-end',gap:14,
+        textAlign:'right',
+      }}>
+        <div>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontSize:38,fontWeight:500,
+            color:'#F5EDE3',lineHeight:1,whiteSpace:'nowrap',
+          }}>
+            <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>{' '}Silva
+          </div>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.38em',
+            textTransform:'uppercase',color:'rgba(232,168,130,.8)',marginTop:8,
+            fontWeight:500,whiteSpace:'nowrap',
+          }}>Estética &amp; Bem-Estar</div>
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:10,whiteSpace:'nowrap'}}>
+          <span style={{height:1,width:28,background:'rgba(184,146,74,.55)',flex:'0 0 28px'}}></span>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:16,color:'rgba(245,237,227,.85)',
+          }}>Duas décadas cuidando de você</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Direction A — Verso: creme, contatos + QR pro WhatsApp
+function CartaoAVerso(){
+  const rows = [
+    { label:'WhatsApp', value:'(48) 99153-5377' },
+    { label:'Site', value:'fesilva.com.br' },
+    { label:'Instagram', value:'@fesilva_estetica' },
+    { label:'E-mail', value:'fesilvaemail@gmail.com' },
+  ];
+  return (
+    <div className="ab cream paper" style={{width:'100%',height:'100%',position:'relative',padding:30}}>
+      {/* tiny logo top-left */}
+      <div style={{position:'absolute',top:24,left:30,display:'flex',alignItems:'center',gap:8}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:22,lineHeight:1,whiteSpace:'nowrap',
+        }}>
+          <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+          <span style={{width:3,height:3,borderRadius:'50%',background:'#C4704A',display:'inline-block',margin:'0 6px 5px',verticalAlign:'middle'}}></span>
+          <span style={{color:'#4A1828',fontWeight:500}}>Silva</span>
+        </span>
+      </div>
+      <span style={{
+        position:'absolute',top:30,right:30,
+        fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.36em',
+        textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,whiteSpace:'nowrap',
+      }}>Por agendamento</span>
+
+      {/* Body: left = contatos, right = QR */}
+      <div style={{
+        position:'absolute',left:30,right:30,top:74,bottom:62,
+        display:'grid',gridTemplateColumns:'1.4fr auto',gap:24,alignItems:'center',
+      }}>
+        <div style={{display:'grid',gap:10,alignContent:'center'}}>
+          {rows.map(r=>(
+            <div key={r.label} style={{display:'grid',gridTemplateColumns:'72px 1fr',alignItems:'baseline',gap:10}}>
+              <div style={{
+                fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.34em',
+                textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,whiteSpace:'nowrap',
+              }}>{r.label}</div>
+              <div style={{
+                fontFamily:"'Cormorant Garamond',serif",fontSize:15,color:'#2C1A14',
+                fontWeight:500,letterSpacing:'.005em',whiteSpace:'nowrap',
+              }}>{r.value}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* QR + label */}
+        <div style={{
+          display:'flex',flexDirection:'column',alignItems:'center',gap:6,
+        }}>
+          <div style={{
+            padding:7,background:'#FBF7F3',borderRadius:6,
+            border:'1px solid rgba(184,146,74,.4)',
+            boxShadow:'0 2px 8px rgba(74,24,40,.06)',
+            display:'grid',placeItems:'center',
+          }}>
+            <window.QRCodeSVG
+              data="https://wa.me/5548991535377?text=Ol%C3%A1%20F%C3%AA!%20Vim%20pelo%20cart%C3%A3o."
+              size={92}
+              fg="#2C1A14"
+            />
+          </div>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.3em',
+            textTransform:'uppercase',color:'#6B2737',fontWeight:500,textAlign:'center',whiteSpace:'nowrap',
+          }}>Agende pelo<br/>WhatsApp</div>
+        </div>
+      </div>
+
+      {/* footer line */}
+      <div style={{position:'absolute',left:30,right:30,bottom:24}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+          <span style={{width:4,height:4,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+          <span style={{flex:1,height:1,background:'rgba(184,146,74,.4)'}}></span>
+        </div>
+        <div style={{
+          fontFamily:"'Jost',sans-serif",fontSize:9.5,color:'#6B5147',letterSpacing:'.04em',lineHeight:1.4,
+        }}>
+          Galeria Benjamin Constant · R. Luís Delfino, 118 · sala 9<br/>
+          Centro · Florianópolis, SC · 88015-360
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Direction B — Frente: creme, lockup centered, tagline
+function CartaoBFrente(){
+  return (
+    <div className="ab cream paper" style={{width:'100%',height:'100%',position:'relative',padding:24,display:'grid',placeItems:'center'}}>
+      {/* Frame */}
+      <div style={{
+        position:'absolute',inset:14,
+        border:'1px solid rgba(184,146,74,.4)',borderRadius:4,
+      }}></div>
+      <div style={{position:'relative',zIndex:2,display:'flex',flexDirection:'column',alignItems:'center'}}>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.42em',
+          textTransform:'uppercase',color:'#9B4A5A',marginBottom:14,fontWeight:500,
+        whiteSpace:'nowrap'}}>Florianópolis · desde 2004</span>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:62,lineHeight:1,
+          display:'inline-flex',alignItems:'baseline',
+        }}>
+          <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+          <span style={{width:5,height:5,borderRadius:'50%',background:'#C4704A',margin:'0 10px 10px',alignSelf:'center'}}></span>
+          <span style={{color:'#4A1828',fontWeight:500}}>Silva</span>
+        </span>
+        <div style={{display:'flex',alignItems:'center',gap:10,marginTop:8,whiteSpace:'nowrap'}}>
+          <span style={{width:28,height:1,background:'#B8924A',opacity:.5,flex:'0 0 28px'}}></span>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:10,letterSpacing:'.4em',
+            textTransform:'uppercase',color:'#6b5147',fontWeight:500,
+          whiteSpace:'nowrap'}}>Estética &amp; Bem-Estar</span>
+          <span style={{width:28,height:1,background:'#B8924A',opacity:.5,flex:'0 0 28px'}}></span>
+        </div>
+        <div style={{
+          marginTop:18,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:18,color:'#6B2737',whiteSpace:'nowrap',
+        }}>Duas décadas cuidando de você.</div>
+      </div>
+    </div>
+  );
+}
+
+// Direction B — Verso: vinho escuro com contatos em creme/dourado
+function CartaoBVerso(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{width:'100%',height:'100%',position:'relative',padding:30}}>
+      <div style={{position:'absolute',top:24,left:30,display:'flex',alignItems:'center',gap:8}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:600,
+          fontSize:22,color:'#B8924A',
+        }}>F</span>
+        <span style={{width:16,height:1,background:'rgba(184,146,74,.55)'}}></span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.34em',
+          textTransform:'uppercase',color:'rgba(232,168,130,.7)',fontWeight:500,
+        whiteSpace:'nowrap'}}>Cuidando de você desde 2004</span>
+      </div>
+
+      {/* Two-column contact grid */}
+      <div style={{
+        position:'absolute',left:30,right:30,top:'52%',transform:'translateY(-50%)',
+        display:'grid',gridTemplateColumns:'1fr 1fr',gap:'14px 28px',
+      }}>
+        {[
+          {l:'WhatsApp', v:'(48) 99153-5377'},
+          {l:'Instagram', v:'@fesilva_estetica'},
+          {l:'Site', v:'fesilva.com.br'},
+          {l:'E-mail', v:'fesilvaemail@gmail.com'},
+        ].map(r=>(
+          <div key={r.l}>
+            <div style={{
+              fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.34em',
+              textTransform:'uppercase',color:'#B8924A',fontWeight:500,marginBottom:5,
+            whiteSpace:'nowrap'}}>{r.l}</div>
+            <div style={{
+              fontFamily:"'Cormorant Garamond',serif",fontSize:16,color:'#F5EDE3',fontWeight:500,
+            }}>{r.v}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{position:'absolute',left:30,right:30,bottom:24}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+          <span style={{flex:1,height:1,background:'rgba(184,146,74,.35)'}}></span>
+          <span style={{width:4,height:4,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+        </div>
+        <div style={{
+          fontFamily:"'Jost',sans-serif",fontSize:9.5,color:'rgba(232,168,130,.7)',letterSpacing:'.04em',lineHeight:1.4,
+        }}>
+          Galeria Benjamin Constant · R. Luís Delfino, 118 · sala 9<br/>
+          Centro · Florianópolis, SC · 88015-360
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { CartaoAFrente, CartaoAVerso, CartaoBFrente, CartaoBVerso });
+
+
+// ===== FLYER =====
+// FLYER · Tabela de Valores — A5 (impressão) + Stories (digital)
+
+const SERVICES = {
+  Unhas: [
+    ['Manicure', 60],
+    ['Pedicure', 70],
+    ['Manicure & pedicure', 120, 'combinado'],
+    ['Esmaltação', 35],
+    ['Corte de unhas', 25],
+    ['Pedicure com onicocriptose', 100, 'unha encravada'],
+    ['Spa dos pés', 120, 'pedicure incluso'],
+  ],
+  Sobrancelha: [
+    ['Design de sobrancelha', 50],
+    ['Limpeza de excesso', 35],
+  ],
+  'Limpeza de pele · vegana': [
+    ['Facial', 180, null, true],
+    ['Costas', 230, null, true],
+    ['Colo / peito', 150, null, true],
+    ['Detox facial', 80, null, true],
+  ],
+  'Depilação · vegana': [
+    ['Buço', 35, null, true],
+    ['Queixo / rosto', 60, null, true],
+    ['Axila', 50, null, true],
+    ['Meia perna', 60, null, true],
+    ['Coxa', 70, null, true],
+    ['Perna inteira', 120, null, true],
+    ['Virilha completa', 80, null, true],
+    ['Virilha cavada', 70, 'lábios e ânus', true],
+    ['Virilha lateral', 60, 'linha biquíni e ânus', true],
+    ['Virilha simples', 50, 'somente laterais', true],
+    ['Perianal', 40, null, true],
+  ],
+};
+
+function ServiceLine({ name, price, sub, vegan, sizing = 'a5' }){
+  const px = sizing === 'a5'
+    ? { name: 11.5, sub: 8.5, price: 12, gap: '5px 0', dot: 1.6 }
+    : { name: 11, sub: 8, price: 11.5, gap: '4px 0', dot: 1.4 };
+  return (
+    <div style={{
+      display:'grid',gridTemplateColumns:'1fr auto',alignItems:'baseline',
+      gap:8,padding:px.gap,
+    }}>
+      <div style={{
+        display:'flex',alignItems:'baseline',gap:6,minWidth:0,
+        position:'relative',
+      }}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:px.name,fontWeight:500,
+          color:'#2C1A14',whiteSpace:'nowrap',
+        }}>
+          {name}
+          {sub && <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:px.sub,color:'#6B5147',
+            marginLeft:6,fontWeight:400,fontStyle:'italic',
+          }}>· {sub}</span>}
+        </span>
+        {/* dotted leader */}
+        <span style={{
+          flex:1,
+          backgroundImage:`radial-gradient(circle, rgba(107,39,55,.32) ${px.dot/2}px, transparent ${px.dot/2}px)`,
+          backgroundSize:'5px 100%',
+          backgroundRepeat:'repeat-x',
+          backgroundPosition:'center',
+          height:px.dot,
+          margin:'0 6px',
+          alignSelf:'center',
+        }}></span>
+      </div>
+      <div style={{
+        fontFamily:"'Cormorant Garamond',serif",fontSize:px.price,fontWeight:600,
+        color:'#6B2737',whiteSpace:'nowrap',
+      }}>R$ {price}</div>
+    </div>
+  );
+}
+
+function CategoryBlock({ title, items, sizing = 'a5' }){
+  const isVegan = title.includes('vegana');
+  const ttl = sizing === 'a5' ? 16 : 15;
+  const eyebrowFS = sizing === 'a5' ? 8.5 : 8;
+  return (
+    <div style={{marginBottom: sizing === 'a5' ? 18 : 14}}>
+      <div style={{display:'flex',alignItems:'baseline',justifyContent:'space-between',marginBottom:6}}>
+        <div style={{display:'flex',alignItems:'baseline',gap:8}}>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:ttl,color:'#4A1828',fontWeight:500,
+          }}>{title.split(' · ')[0]}</span>
+          {isVegan && (
+            <span style={{
+              fontFamily:"'Jost',sans-serif",fontSize:eyebrowFS,letterSpacing:'.3em',
+              textTransform:'uppercase',color:'#C4704A',fontWeight:500,
+              display:'inline-flex',alignItems:'center',gap:6,
+            whiteSpace:'nowrap'}}>
+              <span style={{width:4,height:4,borderRadius:'50%',background:'#C4704A'}}></span>
+              Vegana
+            </span>
+          )}
+        </div>
+        <span style={{height:1,flex:1,background:'rgba(184,146,74,.45)',margin:'0 0 0 12px'}}></span>
+      </div>
+      <div>
+        {items.map((it,i)=>(
+          <ServiceLine key={i} name={it[0]} price={it[1]} sub={it[2]} vegan={it[3]} sizing={sizing} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ====== A5 ======
+function FlyerA5(){
+  return (
+    <div className="ab cream paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      padding:'30px 32px 70px',display:'flex',flexDirection:'column',
+    }}>
+
+      {/* Header */}
+      <div style={{position:'relative',zIndex:1,marginBottom:14}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontSize:28,lineHeight:1,whiteSpace:'nowrap',
+          }}>
+            <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+            <span style={{width:4,height:4,borderRadius:'50%',background:'#C4704A',display:'inline-block',margin:'0 7px 6px',verticalAlign:'middle'}}></span>
+            <span style={{color:'#4A1828',fontWeight:500}}>Silva</span>
+          </span>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.34em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>Estética &amp; Bem-Estar</span>
+        </div>
+      </div>
+
+      {/* Title */}
+      <div style={{position:'relative',zIndex:1,marginBottom:16}}>
+        <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:4}}>
+          <span style={{width:18,height:1,background:'#B8924A'}}></span>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.38em',
+            textTransform:'uppercase',color:'#6B2737',fontWeight:500,
+          whiteSpace:'nowrap'}}>Tabela 2026</span>
+        </div>
+        <h1 style={{
+          margin:0,fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+          fontSize:38,lineHeight:1,color:'#4A1828',letterSpacing:'-.012em',
+        }}>O que está <em style={{color:'#B8924A'}}>na mesa</em>.</h1>
+        <div style={{
+          marginTop:6,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:13.5,color:'#6B5147',
+        }}>Técnica, escuta, tempo — preços por serviço.</div>
+      </div>
+
+      {/* Body — two columns */}
+      <div style={{position:'relative',zIndex:1,display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0 28px',flex:1}}>
+        <div>
+          <CategoryBlock title="Unhas" items={SERVICES.Unhas} />
+          <CategoryBlock title="Sobrancelha" items={SERVICES.Sobrancelha} />
+        </div>
+        <div>
+          <CategoryBlock title="Limpeza de pele · vegana" items={SERVICES['Limpeza de pele · vegana']} />
+          <CategoryBlock title="Depilação · vegana" items={SERVICES['Depilação · vegana']} />
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div style={{
+        position:'absolute',left:32,right:32,bottom:18,
+        paddingTop:12,borderTop:'1px solid rgba(184,146,74,.4)',
+        display:'flex',justifyContent:'space-between',alignItems:'flex-end',gap:14,
+      }}>
+        <div style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:11.5,color:'#6B5147',lineHeight:1.45,flex:1,maxWidth:'60%',
+        }}>
+          Atendimentos a domicílio com acréscimo de taxa de deslocamento.<br/>
+          Combine pelo WhatsApp.
+        </div>
+        <div style={{textAlign:'right'}}>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.34em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,marginBottom:2,
+          whiteSpace:'nowrap'}}>Agendar</div>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontSize:14,color:'#2C1A14',fontWeight:500,
+          }}>(48) 99153-5377 · fesilva.com.br</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ====== Stories ======
+function FlyerStory(){
+  // Showcase the headline categories only — for digital share
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      padding:'30px 26px',display:'flex',flexDirection:'column',
+      color:'#F5EDE3',
+    }}>
+
+      {/* Header */}
+      <div style={{position:'relative',zIndex:1,display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:22,lineHeight:1,whiteSpace:'nowrap',
+        }}>
+          <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+          <span style={{color:'#F5EDE3',fontWeight:500,marginLeft:6}}>Silva</span>
+        </span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+          textTransform:'uppercase',color:'rgba(232,168,130,.7)',fontWeight:500,
+        whiteSpace:'nowrap'}}>Tabela 2026</span>
+      </div>
+
+      {/* Title */}
+      <div style={{position:'relative',zIndex:1,marginTop:30}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+          <span style={{width:3,height:3,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+        </div>
+        <h1 style={{
+          margin:0,fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+          fontSize:42,lineHeight:1,color:'#F5EDE3',letterSpacing:'-.012em',
+        }}>O que está<br/><em style={{color:'#B8924A'}}>na mesa.</em></h1>
+        <div style={{
+          marginTop:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:13,color:'rgba(232,168,130,.85)',
+        }}>Preços por serviço · 2026</div>
+      </div>
+
+      {/* Highlight cards */}
+      <div style={{position:'relative',zIndex:1,marginTop:24,display:'grid',gap:8,flex:1}}>
+        {[
+          {t:'Unhas',a:'A partir de',v:'R$ 25',n:'Manicure, pedicure, spa'},
+          {t:'Sobrancelha',a:'A partir de',v:'R$ 35',n:'Design · limpeza'},
+          {t:'Limpeza de pele',a:'A partir de',v:'R$ 80',n:'Produtos veganos',vegan:true},
+          {t:'Depilação',a:'A partir de',v:'R$ 35',n:'Produtos veganos',vegan:true},
+        ].map(c=>(
+          <div key={c.t} style={{
+            padding:'14px 16px',
+            background:'rgba(245,237,227,0.05)',
+            border:'1px solid rgba(184,146,74,.22)',
+            borderRadius:8,
+            display:'grid',gridTemplateColumns:'1fr auto',alignItems:'center',gap:10,
+          }}>
+            <div>
+              <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:2}}>
+                <span style={{
+                  fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontSize:18,
+                  color:'#F5EDE3',fontWeight:500,
+                }}>{c.t}</span>
+                {c.vegan && (
+                  <span style={{
+                    fontFamily:"'Jost',sans-serif",fontSize:7,letterSpacing:'.28em',
+                    textTransform:'uppercase',color:'#C4704A',fontWeight:500,
+                    padding:'2px 6px',border:'1px solid rgba(196,112,74,.5)',borderRadius:99,
+                  whiteSpace:'nowrap'}}>Vegana</span>
+                )}
+              </div>
+              <div style={{fontFamily:"'Jost',sans-serif",fontSize:9.5,color:'rgba(232,168,130,.7)'}}>{c.n}</div>
+            </div>
+            <div style={{textAlign:'right'}}>
+              <div style={{
+                fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.28em',
+                textTransform:'uppercase',color:'#B8924A',fontWeight:500,
+              whiteSpace:'nowrap'}}>{c.a}</div>
+              <div style={{
+                fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:600,
+                color:'#F5EDE3',lineHeight:1,marginTop:2,
+              }}>{c.v}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer CTA */}
+      <div style={{position:'relative',zIndex:1,marginTop:16,paddingTop:14,borderTop:'1px solid rgba(184,146,74,.3)'}}>
+        <div style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:12,color:'rgba(232,168,130,.7)',marginBottom:8,
+        }}>Tabela completa nos stories destacados &amp; no site.</div>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:8}}>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontSize:14,color:'#F5EDE3',fontWeight:500,
+          }}>fesilva.com.br</div>
+          <div style={{
+            display:'inline-flex',alignItems:'center',gap:6,
+            padding:'8px 14px',background:'#B8924A',borderRadius:99,
+            fontFamily:"'Jost',sans-serif",fontSize:9.5,fontWeight:500,
+            letterSpacing:'.16em',textTransform:'uppercase',color:'#4A1828',
+          whiteSpace:'nowrap'}}>
+            <span>Agendar</span>
+            <span>→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { FlyerA5, FlyerStory });
+
+// ========================================================================
+// STORIES PARA DESTAQUES — Tabela de valores detalhada (9:16)
+// ========================================================================
+
+function TabelaLine({ name, price, sub }){
+  return (
+    <div style={{
+      display:'grid',gridTemplateColumns:'1fr auto',alignItems:'baseline',
+      gap:8,padding:'3px 0',
+    }}>
+      <div style={{display:'flex',alignItems:'baseline',gap:4,minWidth:0}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:12.5,fontWeight:500,
+          color:'#F5EDE3',whiteSpace:'nowrap',
+        }}>
+          {name}
+          {sub && <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8,color:'rgba(232,168,130,.65)',
+            marginLeft:5,fontWeight:400,fontStyle:'italic',
+          }}>· {sub}</span>}
+        </span>
+        <span style={{
+          flex:1,
+          backgroundImage:`radial-gradient(circle, rgba(184,146,74,.4) 0.5px, transparent 0.5px)`,
+          backgroundSize:'4px 100%',backgroundRepeat:'repeat-x',backgroundPosition:'center',
+          height:1.2,margin:'0 5px',alignSelf:'center',
+        }}></span>
+      </div>
+      <div style={{
+        fontFamily:"'Cormorant Garamond',serif",fontSize:13.5,fontWeight:600,
+        color:'#B8924A',whiteSpace:'nowrap',
+      }}>R$ {price}</div>
+    </div>
+  );
+}
+
+function TabelaCategoria({ title, items, vegan }){
+  return (
+    <div style={{marginBottom:10}}>
+      <div style={{display:'flex',alignItems:'baseline',gap:10,marginBottom:2}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:17,color:'#F5EDE3',fontWeight:500,whiteSpace:'nowrap',
+        }}>{title}</span>
+        {vegan && (
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7,letterSpacing:'.28em',
+            textTransform:'uppercase',color:'#C4704A',fontWeight:500,
+            padding:'2px 6px',border:'1px solid rgba(196,112,74,.5)',borderRadius:99,
+            whiteSpace:'nowrap',
+          }}>Vegana</span>
+        )}
+        <span style={{flex:1,height:1,background:'rgba(184,146,74,.3)'}}></span>
+      </div>
+      <div>
+        {items.map((it,i)=>(
+          <TabelaLine key={i} name={it[0]} price={it[1]} sub={it[2]} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ===== Story 1 · Unhas + Sobrancelha =====
+function StoryTabela1(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      padding:'30px 26px',display:'flex',flexDirection:'column',
+      color:'#F5EDE3',
+    }}>
+      {/* header */}
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:22,lineHeight:1,whiteSpace:'nowrap',
+        }}>
+          <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+          <span style={{width:3,height:3,borderRadius:'50%',background:'#C4704A',display:'inline-block',margin:'0 6px 5px',verticalAlign:'middle'}}></span>
+          <span style={{color:'#F5EDE3',fontWeight:500}}>Silva</span>
+        </span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:7,letterSpacing:'.32em',
+          textTransform:'uppercase',color:'rgba(232,168,130,.7)',fontWeight:500,whiteSpace:'nowrap',
+        }}>Tabela · 1 de 2</span>
+      </div>
+
+      {/* title */}
+      <div style={{marginTop:24,marginBottom:8}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+          <span style={{width:3,height:3,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+        </div>
+        <h1 style={{
+          margin:0,fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+          fontSize:36,lineHeight:1,color:'#F5EDE3',letterSpacing:'-.012em',
+        }}>Mãos, pés<br/><em style={{color:'#B8924A'}}>&amp; olhar.</em></h1>
+        <div style={{
+          marginTop:6,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:12,color:'rgba(232,168,130,.7)',
+        }}>Cuidados de unhas e sobrancelha · 2026</div>
+      </div>
+
+      {/* body */}
+      <div style={{flex:1,marginTop:14,overflow:'hidden'}}>
+        <TabelaCategoria title="Unhas" items={[
+          ['Manicure', 60],
+          ['Pedicure', 70],
+          ['Manicure & pedicure', 120, 'combinado'],
+          ['Esmaltação', 35],
+          ['Corte de unhas', 25],
+          ['Pedicure · onicocriptose', 100, 'unha encravada'],
+          ['Spa dos pés', 120, 'pedicure incluso'],
+        ]} />
+        <TabelaCategoria title="Sobrancelha" items={[
+          ['Design de sobrancelha', 50],
+          ['Limpeza de excesso', 35],
+        ]} />
+      </div>
+
+      {/* footer */}
+      <div style={{paddingTop:12,borderTop:'1px solid rgba(184,146,74,.3)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:11,color:'rgba(232,168,130,.7)',
+        }}>Atendimento a domicílio<br/>com taxa de deslocamento.</span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.24em',
+          textTransform:'uppercase',color:'#B8924A',fontWeight:500,whiteSpace:'nowrap',
+        }}>Próxima → pele &amp; depilação</span>
+      </div>
+    </div>
+  );
+}
+
+// ===== Story 2 · Pele + Depilação (vegana) =====
+function StoryTabela2(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      padding:'30px 26px',display:'flex',flexDirection:'column',
+      color:'#F5EDE3',
+    }}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontSize:22,lineHeight:1,whiteSpace:'nowrap',
+        }}>
+          <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+          <span style={{width:3,height:3,borderRadius:'50%',background:'#C4704A',display:'inline-block',margin:'0 6px 5px',verticalAlign:'middle'}}></span>
+          <span style={{color:'#F5EDE3',fontWeight:500}}>Silva</span>
+        </span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:7,letterSpacing:'.32em',
+          textTransform:'uppercase',color:'rgba(232,168,130,.7)',fontWeight:500,whiteSpace:'nowrap',
+        }}>Tabela · 2 de 2</span>
+      </div>
+
+      <div style={{marginTop:16,marginBottom:4}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+          <span style={{width:3,height:3,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+          <span style={{width:14,height:1,background:'#B8924A'}}></span>
+        </div>
+        <h1 style={{
+          margin:0,fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+          fontSize:30,lineHeight:1,color:'#F5EDE3',letterSpacing:'-.012em',
+        }}>Pele &amp; pelo,<br/><em style={{color:'#B8924A'}}>com cuidado.</em></h1>
+        <div style={{
+          marginTop:5,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:11,color:'rgba(232,168,130,.7)',
+        }}>Limpeza de pele e depilação · 100% vegano · 2026</div>
+      </div>
+
+      {/* compact body */}
+      <div style={{flex:1,marginTop:6,overflow:'hidden'}}>
+        <TabelaCategoria title="Limpeza de pele" vegan items={[
+          ['Facial', 180],
+          ['Costas', 230],
+          ['Colo / peito', 150],
+          ['Detox facial', 80],
+        ]} />
+        <TabelaCategoria title="Depilação" vegan items={[
+          ['Buço', 35],
+          ['Queixo / rosto', 60],
+          ['Axila', 50],
+          ['Meia perna', 60],
+          ['Coxa', 70],
+          ['Perna inteira', 120],
+          ['Virilha completa', 80],
+          ['Virilha cavada', 70, 'lábios e ânus'],
+          ['Virilha lateral', 60, 'biquíni e ânus'],
+          ['Virilha simples', 50, 'somente laterais'],
+          ['Perianal', 40],
+        ]} />
+      </div>
+
+      <div style={{paddingTop:10,borderTop:'1px solid rgba(184,146,74,.3)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <span style={{
+          fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:11,color:'rgba(232,168,130,.7)',
+        }}>Combine pelo WhatsApp →</span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.24em',
+          textTransform:'uppercase',color:'#B8924A',fontWeight:500,whiteSpace:'nowrap',
+        }}>(48) 99153-5377</span>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { StoryTabela1, StoryTabela2 });
+
+
+// ===== SOCIAL =====
+// INSTAGRAM — Feed (6 templates · 4:5) + Stories (3 templates · 9:16) + Highlights (8 ícones)
+
+// ========== Helpers ==========
+function PostFrame({ children, bg = 'cream', frame = true }){
+  const bgs = {
+    cream: { cls:'ab cream paper', color:'#2C1A14' },
+    warm:  { cls:'ab warm paper',  color:'#2C1A14' },
+    wine:  { cls:'ab wine dark-paper', color:'#F5EDE3' },
+    wineDark: { cls:'ab wine-dark dark-paper', color:'#F5EDE3' },
+    terra: { cls:'ab terra', color:'#4A1828' },
+  };
+  const b = bgs[bg] || bgs.cream;
+  return (
+    <div className={b.cls} style={{width:'100%',height:'100%',position:'relative',padding:24}}>
+      {frame && (
+        <div style={{
+          position:'absolute',inset:18,
+          border:'1px solid ' + (bg.startsWith('wine')||bg==='terra' ? 'rgba(184,146,74,.35)' : 'rgba(107,39,55,.25)'),
+          pointerEvents:'none',
+        }}></div>
+      )}
+      <div style={{position:'relative',height:'100%',color:b.color}}>{children}</div>
+    </div>
+  );
+}
+
+function PostHeader({ onDark = false, right = null }){
+  const c = onDark ? '#F5EDE3' : '#4A1828';
+  const sub = onDark ? 'rgba(232,168,130,.7)' : '#9B4A5A';
+  return (
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+      <div style={{
+        fontFamily:"'Cormorant Garamond',serif",fontSize:18,lineHeight:1,whiteSpace:'nowrap',
+      }}>
+        <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+        <span style={{width:3,height:3,borderRadius:'50%',background:'#C4704A',display:'inline-block',margin:'0 5px 4px',verticalAlign:'middle'}}></span>
+        <span style={{color:c,fontWeight:500}}>Silva</span>
+      </div>
+      {right || (
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+          textTransform:'uppercase',color:sub,fontWeight:500,
+        whiteSpace:'nowrap'}}>Estética &amp; Bem-Estar</span>
+      )}
+    </div>
+  );
+}
+
+function PostFooter({ onDark = false, label = '@fesilva_estetica' }){
+  const c = onDark ? 'rgba(232,168,130,.7)' : '#9B4A5A';
+  return (
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+      <div style={{display:'flex',alignItems:'center',gap:6}}>
+        <span style={{width:14,height:1,background:'#B8924A'}}></span>
+        <span style={{width:3,height:3,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+      </div>
+      <span style={{
+        fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.28em',
+        textTransform:'uppercase',color:c,fontWeight:500,
+      whiteSpace:'nowrap'}}>{label}</span>
+    </div>
+  );
+}
+
+// ========== 01 · Apresentação ==========
+function FeedApresentacao(){
+  return (
+    <div className="ab cream paper" style={{width:'100%',height:'100%',position:'relative',display:'grid',gridTemplateRows:'1fr auto'}}>
+      <div style={{position:'relative',overflow:'hidden'}}>
+        <window.ImagePlaceholder tone="terra">retrato da Fê · luz quente</window.ImagePlaceholder>
+        <div style={{
+          position:'absolute',inset:0,
+          background:'linear-gradient(180deg, rgba(74,24,40,.05) 0%, rgba(74,24,40,.55) 100%)',
+        }}></div>
+        <div style={{position:'absolute',top:20,left:24,right:24,display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontSize:18,color:'#F5EDE3',
+          }}>
+            <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span> Silva
+          </span>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'rgba(245,237,227,.7)',fontWeight:500,
+          whiteSpace:'nowrap'}}>Olá</span>
+        </div>
+        <div style={{position:'absolute',bottom:24,left:24,right:24}}>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontSize:48,fontWeight:500,lineHeight:1,
+            color:'#F5EDE3',letterSpacing:'-.012em',
+          }}>
+            Prazer, sou a<br/><em style={{color:'#B8924A'}}>Fernanda.</em>
+          </div>
+          <div style={{
+            marginTop:10,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:15,color:'rgba(245,237,227,.85)',
+          }}>Duas décadas cuidando de pessoas no Centro de Floripa.</div>
+        </div>
+      </div>
+      <div style={{
+        padding:'14px 24px',background:'#F5EDE3',
+        display:'flex',justifyContent:'space-between',alignItems:'center',
+      }}>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.28em',
+          textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+        whiteSpace:'nowrap'}}>Deslize →</span>
+        <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontSize:12,color:'#6B5147'}}>
+          @fesilva_estetica
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// ========== 02 · Serviço · preço ==========
+function FeedServico(){
+  return (
+    <PostFrame bg="cream">
+      <div style={{display:'flex',flexDirection:'column',height:'100%'}}>
+        <PostHeader right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'#C4704A',fontWeight:500,
+            display:'inline-flex',alignItems:'center',gap:6,
+          whiteSpace:'nowrap'}}><span style={{width:4,height:4,borderRadius:'50%',background:'#C4704A'}}></span>Vegana</span>
+        } />
+        <div style={{flex:1,position:'relative',marginTop:22}}>
+          <div style={{
+            position:'absolute',top:0,left:0,right:0,bottom:0,
+            display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:12,
+          }}>
+            <span style={{
+              fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.42em',
+              textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+            whiteSpace:'nowrap'}}>Limpeza de pele</span>
+            <div style={{
+              fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+              fontSize:58,lineHeight:1,color:'#4A1828',letterSpacing:'-.012em',textAlign:'center',
+            }}>Facial</div>
+            <div style={{
+              fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+              fontSize:16,color:'#6B5147',textAlign:'center',maxWidth:240,lineHeight:1.4,marginTop:-2,
+            }}>Ritual completo · 90 min · produtos veganos sem testes em animais.</div>
+            <div style={{display:'flex',alignItems:'center',gap:10,marginTop:14}}>
+              <span style={{width:32,height:1,background:'#B8924A'}}></span>
+              <span style={{width:5,height:5,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+              <span style={{width:32,height:1,background:'#B8924A'}}></span>
+            </div>
+            <div style={{
+              fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:46,
+              color:'#6B2737',lineHeight:1,whiteSpace:'nowrap',
+            }}>R$ 180</div>
+          </div>
+        </div>
+        <PostFooter label="Agende · link na bio" />
+      </div>
+    </PostFrame>
+  );
+}
+
+// ========== 03 · Depoimento ==========
+function FeedDepoimento(){
+  return (
+    <PostFrame bg="wineDark" frame={true}>
+      <div style={{display:'flex',flexDirection:'column',height:'100%'}}>
+        <PostHeader onDark={true} right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'rgba(232,168,130,.7)',fontWeight:500,
+          whiteSpace:'nowrap'}}>Depoimento</span>
+        }/>
+        <div style={{flex:1,position:'relative',display:'grid',placeItems:'center',padding:'0 8px'}}>
+          {/* big quote mark */}
+          <span style={{
+            position:'absolute',top:-10,left:0,
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:170,color:'rgba(184,146,74,.18)',lineHeight:.6,
+          }}>“</span>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:400,
+            fontSize:28,lineHeight:1.25,color:'#F5EDE3',textAlign:'center',position:'relative',
+          }}>
+            Saio dali leve. A Fê tem mão firme<br/>e o ritmo certo —<br/>volto sempre.
+          </div>
+        </div>
+        <div style={{textAlign:'center',marginBottom:6}}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:10,marginBottom:8}}>
+            <span style={{width:18,height:1,background:'rgba(184,146,74,.6)'}}></span>
+            <span style={{width:4,height:4,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+            <span style={{width:18,height:1,background:'rgba(184,146,74,.6)'}}></span>
+          </div>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:9.5,letterSpacing:'.38em',
+            textTransform:'uppercase',color:'#B8924A',fontWeight:500,
+          whiteSpace:'nowrap'}}>Cliente desde 2019</div>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:14,color:'rgba(232,168,130,.7)',marginTop:4,
+          }}>Marina · 38 · Centro</div>
+        </div>
+      </div>
+    </PostFrame>
+  );
+}
+
+// ========== 04 · Dica · vegano ==========
+function FeedDica(){
+  return (
+    <PostFrame bg="cream" frame={true}>
+      <div style={{display:'flex',flexDirection:'column',height:'100%'}}>
+        <PostHeader right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>Dica nº 03</span>
+        }/>
+
+        <div style={{marginTop:18}}>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.38em',
+            textTransform:'uppercase',color:'#C4704A',fontWeight:500,
+            display:'inline-flex',alignItems:'center',gap:6,
+          whiteSpace:'nowrap'}}>
+            <span style={{width:4,height:4,borderRadius:'50%',background:'#C4704A'}}></span>
+            Produtos veganos
+          </span>
+        </div>
+
+        <div style={{
+          marginTop:12,
+          fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+          fontSize:34,lineHeight:1.05,color:'#4A1828',letterSpacing:'-.01em',
+        }}>
+          O que muda<br/>quando a depilação é <em style={{color:'#B8924A'}}>vegana?</em>
+        </div>
+
+        <div style={{flex:1,marginTop:18,display:'flex',flexDirection:'column',gap:10}}>
+          {[
+            ['01','Sem testes em animais — princípio antes de tudo.'],
+            ['02','Fórmulas mais suaves; menos irritação na retirada.'],
+            ['03','Ingredientes vegetais com função calmante real.'],
+          ].map(([n,t])=>(
+            <div key={n} style={{display:'flex',alignItems:'flex-start',gap:12}}>
+              <span style={{
+                fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:500,
+                fontSize:24,color:'#B8924A',lineHeight:1,minWidth:30,
+              }}>{n}</span>
+              <span style={{
+                fontFamily:"'Cormorant Garamond',serif",fontSize:15,color:'#2C1A14',
+                lineHeight:1.4,fontWeight:500,paddingTop:4,
+              }}>{t}</span>
+            </div>
+          ))}
+        </div>
+
+        <PostFooter label="Agende · link na bio" />
+      </div>
+    </PostFrame>
+  );
+}
+
+// ========== 05 · Agenda da semana ==========
+function FeedAgenda(){
+  const week = [
+    {d:'Ter', date:'27', slots:['10h','14h','16h']},
+    {d:'Qua', date:'28', slots:['9h','15h']},
+    {d:'Qui', date:'29', slots:['lotado'], full:true},
+    {d:'Sex', date:'30', slots:['10h','11h','17h']},
+    {d:'Sáb', date:'31', slots:['9h','13h']},
+  ];
+  return (
+    <PostFrame bg="warm" frame={true}>
+      <div style={{display:'flex',flexDirection:'column',height:'100%'}}>
+        <PostHeader right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>Agenda · Mai/26</span>
+        }/>
+        <div style={{marginTop:20}}>
+          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:4}}>
+            <span style={{width:14,height:1,background:'#B8924A'}}></span>
+            <span style={{
+              fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.4em',
+              textTransform:'uppercase',color:'#6B2737',fontWeight:500,
+            whiteSpace:'nowrap'}}>Horários · esta semana</span>
+          </div>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+            fontSize:34,lineHeight:1,color:'#4A1828',letterSpacing:'-.012em',
+          }}>Vagas em <em style={{color:'#B8924A'}}>aberto.</em></div>
+        </div>
+
+        <div style={{flex:1,marginTop:18,display:'flex',flexDirection:'column',gap:8}}>
+          {week.map(w=>(
+            <div key={w.d} style={{
+              display:'grid',gridTemplateColumns:'auto 1fr',gap:14,alignItems:'center',
+              padding:'8px 0',borderTop:'1px solid rgba(107,39,55,.18)',
+            }}>
+              <div style={{
+                display:'flex',flexDirection:'column',alignItems:'center',minWidth:42,
+                paddingRight:12,borderRight:'1px solid rgba(107,39,55,.18)',
+              }}>
+                <span style={{
+                  fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.24em',
+                  textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+                whiteSpace:'nowrap'}}>{w.d}</span>
+                <span style={{
+                  fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:500,
+                  color:'#4A1828',lineHeight:1,
+                }}>{w.date}</span>
+              </div>
+              <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
+                {w.full ? (
+                  <span style={{
+                    fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+                    fontSize:14,color:'#9B4A5A',
+                  }}>lotado · entrei na lista</span>
+                ) : w.slots.map(s=>(
+                  <span key={s} style={{
+                    padding:'4px 10px',border:'1px solid rgba(184,146,74,.55)',borderRadius:99,
+                    fontFamily:"'Jost',sans-serif",fontSize:10,color:'#4A1828',fontWeight:500,
+                  }}>{s}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{
+          marginTop:14,paddingTop:10,borderTop:'1px solid rgba(184,146,74,.4)',
+          display:'flex',justifyContent:'space-between',alignItems:'center',
+        }}>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:12,color:'#6B5147',
+          }}>Reserve pelo WhatsApp →</span>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.24em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>(48) 99153-5377</span>
+        </div>
+      </div>
+    </PostFrame>
+  );
+}
+
+// ========== 06 · Citação ==========
+function FeedCitacao(){
+  return (
+    <div className="ab" style={{
+      width:'100%',height:'100%',position:'relative',
+      background:'#F5EDE3',padding:24,
+    }}>
+      <div style={{position:'absolute',inset:18,border:'1px solid rgba(107,39,55,.22)',pointerEvents:'none'}}></div>
+
+      <div style={{position:'relative',height:'100%',display:'flex',flexDirection:'column'}}>
+        <PostHeader right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>Em palavras</span>
+        }/>
+
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',padding:'0 14px'}}>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:60,color:'rgba(184,146,74,.45)',lineHeight:.4,marginBottom:18,
+          }}>“</span>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontWeight:400,fontStyle:'italic',
+            fontSize:36,lineHeight:1.15,color:'#4A1828',textAlign:'center',letterSpacing:'-.005em',
+          }}>
+            Gente cuidando<br/>de gente,<br/><span style={{color:'#B8924A'}}>sem pressa.</span>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:10,marginTop:26}}>
+            <span style={{width:30,height:1,background:'#B8924A'}}></span>
+            <span style={{
+              fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.4em',
+              textTransform:'uppercase',color:'#6B2737',fontWeight:500,
+            whiteSpace:'nowrap'}}>Fê Silva</span>
+            <span style={{width:30,height:1,background:'#B8924A'}}></span>
+          </div>
+        </div>
+
+        <PostFooter />
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// ============== STORIES (9:16) ==============
+// ============================================
+
+function StoryAgendar(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{width:'100%',height:'100%',position:'relative',padding:'30px 26px'}}>
+      <div style={{position:'relative',height:'100%',display:'flex',flexDirection:'column'}}>
+        <PostHeader onDark={true} right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'rgba(232,168,130,.7)',fontWeight:500,
+          whiteSpace:'nowrap'}}>Story · 01</span>
+        }/>
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start'}}>
+          <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
+            <span style={{width:18,height:1,background:'#B8924A'}}></span>
+            <span style={{
+              fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.4em',
+              textTransform:'uppercase',color:'#B8924A',fontWeight:500,
+            whiteSpace:'nowrap'}}>Agenda aberta</span>
+          </div>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+            fontSize:64,lineHeight:.95,color:'#F5EDE3',letterSpacing:'-.012em',
+          }}>
+            Vem<br/>cuidar<br/>de você.
+          </div>
+          <div style={{
+            marginTop:18,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:18,color:'rgba(232,168,130,.85)',
+          }}>Mãos · pés · pele · sobrancelha.<br/>Centro de Florianópolis.</div>
+        </div>
+        <div style={{
+          padding:'14px 18px',
+          background:'#B8924A',color:'#4A1828',borderRadius:99,
+          display:'flex',justifyContent:'space-between',alignItems:'center',
+          fontFamily:"'Jost',sans-serif",fontWeight:600,fontSize:11,
+          letterSpacing:'.16em',textTransform:'uppercase',marginBottom:6,
+          whiteSpace:'nowrap',
+        }}>
+          <span>Agendar no WhatsApp</span>
+          <span style={{fontSize:14}}>→</span>
+        </div>
+        <div style={{textAlign:'center',fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:12,color:'rgba(232,168,130,.65)'}}>arraste para cima ↑</div>
+      </div>
+    </div>
+  );
+}
+
+function StoryAntesDepois(){
+  return (
+    <div className="ab cream paper" style={{width:'100%',height:'100%',position:'relative',padding:'26px 22px'}}>
+      <div style={{position:'absolute',inset:14,border:'1px solid rgba(107,39,55,.22)',pointerEvents:'none'}}></div>
+      <div style={{position:'relative',height:'100%',display:'flex',flexDirection:'column'}}>
+        <PostHeader right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>Story · 02</span>
+        }/>
+        <div style={{marginTop:14,marginBottom:12}}>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+            fontSize:30,lineHeight:1,color:'#4A1828',
+          }}>Antes <em style={{color:'#B8924A'}}>&amp;</em> depois</div>
+          <div style={{
+            marginTop:4,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:13,color:'#6B5147',
+          }}>Design de sobrancelha · sem dor</div>
+        </div>
+
+        <div style={{flex:1,display:'grid',gridTemplateRows:'1fr 1fr',gap:12}}>
+          {[
+            {l:'Antes',tone:'cream',n:'foto · estado inicial'},
+            {l:'Depois',tone:'terra',n:'foto · após o cuidado'},
+          ].map(s=>(
+            <div key={s.l} style={{position:'relative',overflow:'hidden',borderRadius:8}}>
+              <window.ImagePlaceholder tone={s.tone}>{s.n}</window.ImagePlaceholder>
+              <span style={{
+                position:'absolute',top:10,left:12,
+                padding:'3px 10px',background:'rgba(74,24,40,.9)',color:'#B8924A',
+                fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.32em',
+                textTransform:'uppercase',fontWeight:500,borderRadius:99,
+              whiteSpace:'nowrap'}}>{s.l}</span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{
+          marginTop:14,paddingTop:12,borderTop:'1px solid rgba(184,146,74,.4)',
+          display:'flex',justifyContent:'space-between',alignItems:'center',
+        }}>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:13,color:'#6B5147',
+          }}>com permissão da cliente.</span>
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.28em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>@fesilva_estetica</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StoryDica(){
+  return (
+    <div className="ab warm paper" style={{width:'100%',height:'100%',position:'relative',padding:'30px 26px'}}>
+      <div style={{position:'absolute',inset:14,border:'1px solid rgba(184,146,74,.4)',pointerEvents:'none'}}></div>
+      <div style={{position:'relative',height:'100%',display:'flex',flexDirection:'column'}}>
+        <PostHeader right={
+          <span style={{
+            fontFamily:"'Jost',sans-serif",fontSize:7,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'#C4704A',fontWeight:500,
+            display:'inline-flex',alignItems:'center',gap:5,
+          whiteSpace:'nowrap'}}><span style={{width:4,height:4,borderRadius:'50%',background:'#C4704A'}}></span>Dica nº 07</span>
+        }/>
+
+        <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'center'}}>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.42em',
+            textTransform:'uppercase',color:'#9B4A5A',marginBottom:12,fontWeight:500,
+          whiteSpace:'nowrap'}}>Você sabia?</div>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontWeight:500,
+            fontSize:38,lineHeight:1.05,color:'#4A1828',letterSpacing:'-.01em',
+          }}>
+            Hidratação<br/>antes da<br/><em style={{color:'#B8924A'}}>esmaltação</em><br/>faz a cor durar mais.
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:10,marginTop:24}}>
+            <span style={{width:24,height:1,background:'#B8924A'}}></span>
+            <span style={{width:5,height:5,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+          </div>
+          <div style={{
+            marginTop:14,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:16,color:'#6B5147',lineHeight:1.5,
+          }}>
+            Mas só na unha, nunca no esmalte.<br/>O óleo na cutícula é o segredo —<br/>aplique à noite.
+          </div>
+        </div>
+
+        <PostFooter label="Mais dicas → destaques" />
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// ============== HIGHLIGHTS (8) ==============
+// ============================================
+
+// Linear SVG icon set — minimal, hand-tuned for the brand
+function HIcon({ name, color = '#B8924A' }){
+  const sw = 1.2;
+  switch(name){
+    case 'unhas': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 12c0-2.2 2.7-4 6-4s6 1.8 6 4v18c0 4.4-2.7 8-6 8s-6-3.6-6-8V12z"/>
+        <path d="M18 18c4 1.2 8 1.2 12 0"/>
+      </svg>
+    );
+    case 'sobrancelha': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round">
+        <path d="M10 20c4-4 10-6 14-6s10 2 14 6"/>
+        <path d="M12 24c0-1 1.5-1.5 3-1M18 22c0-1 1.5-1.5 3-1M24 21.5c0-1 1.5-1.5 3-1M30 22c0-1 1.5-1.5 3-1M36 24c-1.5-.5-2-.5-3-.3"/>
+        <ellipse cx="24" cy="32" rx="4" ry="2"/>
+      </svg>
+    );
+    case 'pele': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round">
+        <path d="M24 8c8 0 14 7 14 14 0 10-7 18-14 18s-14-8-14-18c0-7 6-14 14-14z"/>
+        <circle cx="19" cy="22" r="1"/>
+        <circle cx="29" cy="22" r="1"/>
+        <path d="M20 30c2 1.5 6 1.5 8 0"/>
+      </svg>
+    );
+    case 'depilacao': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round">
+        <path d="M24 4c-3 8-3 16 0 24M24 4c3 8 3 16 0 24"/>
+        <path d="M14 32h20l-2 10H16l-2-10z"/>
+        <path d="M19 34v6M24 34v6M29 34v6"/>
+      </svg>
+    );
+    case 'vegano': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round">
+        <path d="M24 40c0-12 8-24 18-24-4 12-10 24-18 24z"/>
+        <path d="M24 40c0-12-8-24-18-24 4 12 10 24 18 24z"/>
+        <path d="M24 40v-24"/>
+      </svg>
+    );
+    case 'sobre': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round">
+        <circle cx="24" cy="18" r="6"/>
+        <path d="M12 40c2-7 7-10 12-10s10 3 12 10"/>
+      </svg>
+    );
+    case 'horarios': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round">
+        <circle cx="24" cy="24" r="16"/>
+        <path d="M24 14v10l7 4"/>
+      </svg>
+    );
+    case 'contato': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round">
+        <path d="M40 24c0 8.8-7.2 16-16 16-2.7 0-5.3-.7-7.5-2L8 40l2-8.5C8.7 29.3 8 26.7 8 24 8 15.2 15.2 8 24 8s16 7.2 16 16z"/>
+      </svg>
+    );
+    case 'precos': return (
+      <svg viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+        {/* price tag with diagonal cut and hole */}
+        <path d="M27 6H38v11L20 35a2.5 2.5 0 0 1-3.5 0L13 31.5a2.5 2.5 0 0 1 0-3.5L31 10"/>
+        <circle cx="33" cy="15" r="1.6"/>
+      </svg>
+    );
+    default: return null;
+  }
+}
+
+function HighlightCover({ label, icon }){
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      borderRadius:'50%',overflow:'hidden',
+      display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:8,
+      border:'1px solid rgba(184,146,74,.4)',
+    }}>
+      <div style={{width:'42%',height:'42%',color:'#B8924A'}}>
+        <HIcon name={icon} />
+      </div>
+      <div style={{
+        fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:500,
+        fontSize:18,color:'#F5EDE3',letterSpacing:'.01em',
+      }}>{label}</div>
+      <div style={{
+        position:'absolute',bottom:'18%',display:'flex',alignItems:'center',gap:6,
+      }}>
+        <span style={{width:10,height:1,background:'rgba(184,146,74,.55)'}}></span>
+        <span style={{width:3,height:3,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+        <span style={{width:10,height:1,background:'rgba(184,146,74,.55)'}}></span>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, {
+  FeedApresentacao, FeedServico, FeedDepoimento, FeedDica, FeedAgenda, FeedCitacao,
+  StoryAgendar, StoryAntesDepois, StoryDica,
+  HighlightCover,
+});
+
+// ===== INSTAGRAM PROFILE PIC (1080×1080 · circular crop) =====
+// Three variations for the user to pick from.
+
+function ProfilePicMonograma(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      borderRadius:'50%',overflow:'hidden',
+      display:'grid',placeItems:'center',
+      border:'1px solid rgba(184,146,74,.4)',
+    }}>
+      <span style={{
+        fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:500,
+        color:'#B8924A',fontSize:240,lineHeight:1,letterSpacing:'-.02em',
+        transform:'translateY(-4%)',
+      }}>F</span>
+    </div>
+  );
+}
+
+function ProfilePicSelo(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      borderRadius:'50%',overflow:'hidden',
+      display:'grid',placeItems:'center',
+    }}>
+      <svg width="100%" height="100%" viewBox="0 0 320 320" style={{position:'absolute',inset:0}}>
+        <defs>
+          <path id="ppSeloCircle" d="M 160,160 m -118,0 a 118,118 0 1,1 236,0 a 118,118 0 1,1 -236,0" />
+        </defs>
+        <circle cx="160" cy="160" r="148" fill="none" stroke="#B8924A" strokeWidth="0.8" opacity="0.5"/>
+        <text fontFamily="Jost, sans-serif" fontSize="14" letterSpacing="5" fill="#B8924A" fontWeight="500">
+          <textPath href="#ppSeloCircle" startOffset="0">
+            FÊ SILVA · ESTÉTICA &amp; BEM-ESTAR · FLORIPA ·
+          </textPath>
+        </text>
+        {[0,90,180,270].map(a=>{
+          const rad=(a-90)*Math.PI/180; const r=118;
+          const x=160+r*Math.cos(rad); const y=160+r*Math.sin(rad);
+          return <rect key={a} x={x-3} y={y-3} width="6" height="6" fill="#C4704A" transform={`rotate(45 ${x} ${y})`}/>
+        })}
+      </svg>
+      <span style={{
+        fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:500,
+        color:'#B8924A',fontSize:160,lineHeight:1,letterSpacing:'-.04em',
+        transform:'translateY(-2%)',position:'relative',zIndex:1,
+      }}>F</span>
+    </div>
+  );
+}
+
+function ProfilePicLetras(){
+  return (
+    <div className="ab wine-dark dark-paper" style={{
+      width:'100%',height:'100%',position:'relative',
+      borderRadius:'50%',overflow:'hidden',
+      display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',
+      border:'1px solid rgba(184,146,74,.4)',
+    }}>
+      <span style={{
+        fontFamily:"'Cormorant Garamond',serif",fontSize:62,lineHeight:1,letterSpacing:'.005em',
+        display:'inline-flex',alignItems:'baseline',whiteSpace:'nowrap',
+      }}>
+        <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+        <span style={{width:6,height:6,borderRadius:'50%',background:'#C4704A',margin:'0 10px 8px',alignSelf:'center'}}></span>
+        <span style={{color:'#F5EDE3',fontWeight:500}}>Silva</span>
+      </span>
+      <div style={{display:'flex',alignItems:'center',gap:8,marginTop:10}}>
+        <span style={{width:18,height:1,background:'rgba(184,146,74,.6)'}}></span>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:9.5,letterSpacing:'.36em',
+          textTransform:'uppercase',color:'rgba(232,168,130,.85)',fontWeight:500,whiteSpace:'nowrap',
+        }}>Estética &amp; Bem-Estar</span>
+        <span style={{width:18,height:1,background:'rgba(184,146,74,.6)'}}></span>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { ProfilePicMonograma, ProfilePicSelo, ProfilePicLetras });
+
+
+// ===== PAPELARIA =====
+// PAPELARIA · cabeçalho recibo · etiqueta · wallpaper WhatsApp
+
+function Recibo(){
+  return (
+    <div className="ab cream paper" style={{
+      width:'100%',height:'100%',padding:'28px 36px',display:'flex',flexDirection:'column',
+      position:'relative',
+    }}>
+
+      {/* Header */}
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}}>
+        <div>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",fontSize:36,lineHeight:1,whiteSpace:'nowrap',
+          }}>
+            <span style={{fontStyle:'italic',color:'#B8924A',fontWeight:600}}>Fê</span>
+            <span style={{width:5,height:5,borderRadius:'50%',background:'#C4704A',display:'inline-block',margin:'0 9px 8px',verticalAlign:'middle'}}></span>
+            <span style={{color:'#4A1828',fontWeight:500}}>Silva</span>
+          </span>
+          <div style={{
+            marginTop:6,fontFamily:"'Jost',sans-serif",fontSize:9.5,letterSpacing:'.36em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,whiteSpace:'nowrap',
+          }}>Estética &amp; Bem-Estar</div>
+        </div>
+        <div style={{textAlign:'right'}}>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:9,letterSpacing:'.34em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+          whiteSpace:'nowrap'}}>Recibo</div>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:22,color:'#4A1828',fontWeight:500,marginTop:2,
+          }}>nº ___________</div>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:10,color:'#6B5147',marginTop:6,letterSpacing:'.02em',
+          }}>Data: ____ / ____ / ______</div>
+        </div>
+      </div>
+
+      <div style={{display:'flex',alignItems:'center',gap:10,margin:'22px 0 18px'}}>
+        <span style={{flex:1,height:1,background:'rgba(184,146,74,.45)'}}></span>
+        <span style={{width:5,height:5,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+        <span style={{flex:1,height:1,background:'rgba(184,146,74,.45)'}}></span>
+      </div>
+
+      {/* Body fields */}
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'14px 28px',position:'relative',zIndex:1}}>
+        {[
+          {l:'Recebido de', v:'_________________________________'},
+          {l:'CPF / CNPJ', v:'_________________________________'},
+          {l:'Referente a', v:'_________________________________'},
+          {l:'Valor', v:'R$ ______________________________'},
+        ].map(f=>(
+          <div key={f.l}>
+            <div style={{
+              fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.34em',
+              textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,marginBottom:4,
+            whiteSpace:'nowrap'}}>{f.l}</div>
+            <div style={{
+              fontFamily:"'Cormorant Garamond',serif",fontSize:15,color:'#2C1A14',
+              letterSpacing:'.02em',
+            }}>{f.v}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <div style={{flex:1}}></div>
+      <div style={{
+        paddingTop:14,marginTop:14,borderTop:'1px solid rgba(184,146,74,.4)',
+        display:'flex',justifyContent:'space-between',alignItems:'flex-end',gap:18,
+      }}>
+        <div style={{flex:1,maxWidth:'55%'}}>
+          <div style={{
+            fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:12,color:'#6B5147',lineHeight:1.5,
+          }}>
+            Galeria Benjamin Constant · R. Luís Delfino, 118 · sala 9<br/>
+            Centro · Florianópolis, SC · (48) 99153-5377
+          </div>
+        </div>
+        <div style={{textAlign:'right'}}>
+          <div style={{
+            width:140,height:1,background:'#4A1828',marginBottom:4,marginLeft:'auto',
+          }}></div>
+          <div style={{
+            fontFamily:"'Jost',sans-serif",fontSize:8.5,letterSpacing:'.34em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,whiteSpace:'nowrap',
+          }}>Assinatura · Fê Silva</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Etiqueta(){
+  return (
+    <div className="ab" style={{
+      width:'100%',height:'100%',background:'transparent',
+      display:'grid',placeItems:'center',padding:18,
+    }}>
+      {/* The actual tag — rounded with a hole */}
+      <div style={{
+        width:'82%',aspectRatio:'4 / 5',position:'relative',
+        background:'#F5EDE3',
+        backgroundImage:`
+          radial-gradient(at 12% 8%, rgba(196,112,74,0.08) 0px, transparent 50%),
+          radial-gradient(at 88% 92%, rgba(107,39,55,0.06) 0px, transparent 50%)
+        `,
+        borderRadius:'12px',
+        boxShadow:'0 6px 22px rgba(74,24,40,.18)',
+        padding:'22px 18px',display:'flex',flexDirection:'column',alignItems:'center',
+        border:'1px solid rgba(184,146,74,.35)',
+      }}>
+        {/* punched hole */}
+        <div style={{
+          position:'absolute',top:10,left:'50%',transform:'translateX(-50%)',
+          width:14,height:14,borderRadius:'50%',
+          background:'#f0eee9',
+          border:'1px solid rgba(74,24,40,.18)',
+        }}></div>
+
+        {/* tiny string */}
+        <div style={{
+          position:'absolute',top:-12,left:'50%',transform:'translateX(-50%) rotate(-12deg)',
+          width:1,height:28,background:'rgba(74,24,40,.3)',
+        }}></div>
+
+        <div style={{marginTop:14,display:'flex',flexDirection:'column',alignItems:'center'}}>
+          {/* inner frame */}
+          <div style={{
+            border:'1px solid rgba(184,146,74,.45)',padding:'18px 16px 14px',
+            display:'flex',flexDirection:'column',alignItems:'center',
+            position:'relative',
+          }}>
+            <span style={{
+              fontFamily:"'Jost',sans-serif",fontSize:7.5,letterSpacing:'.4em',
+              textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,marginBottom:8,
+            whiteSpace:'nowrap'}}>Cuidado · Fê Silva</span>
+            <span style={{
+              fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',fontWeight:600,
+              color:'#B8924A',fontSize:72,lineHeight:.9,letterSpacing:'-.02em',
+            }}>F</span>
+            <div style={{display:'flex',alignItems:'center',gap:6,marginTop:4}}>
+              <span style={{width:10,height:1,background:'#B8924A',opacity:.55}}></span>
+              <span style={{width:4,height:4,background:'#C4704A',transform:'rotate(45deg)'}}></span>
+              <span style={{width:10,height:1,background:'#B8924A',opacity:.55}}></span>
+            </div>
+          </div>
+
+          <div style={{
+            marginTop:14,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+            fontSize:14,color:'#4A1828',textAlign:'center',lineHeight:1.3,
+          }}>com cuidado,<br/>do começo ao fim.</div>
+
+          <div style={{
+            marginTop:'auto',paddingTop:14,
+            fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.32em',
+            textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,textAlign:'center',
+          whiteSpace:'nowrap'}}>@fesilva_estetica</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WhatsWall(){
+  // A subtle, branded wallpaper for WhatsApp Business — repeating motif
+  return (
+    <div className="ab cream paper" style={{
+      width:'100%',height:'100%',position:'relative',overflow:'hidden',
+    }}>
+      {/* Repeating pattern via SVG */}
+      <svg width="100%" height="100%" style={{position:'absolute',inset:0}} preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="fePat" x="0" y="0" width="120" height="160" patternUnits="userSpaceOnUse">
+            {/* italic F */}
+            <text x="14" y="60" fontFamily="Cormorant Garamond, serif" fontStyle="italic" fontWeight="600" fontSize="48" fill="rgba(184,146,74,.16)" letterSpacing="-1">F</text>
+            {/* dot */}
+            <circle cx="80" cy="50" r="2" fill="rgba(196,112,74,.25)" />
+            {/* diamond */}
+            <rect x="14" y="120" width="5" height="5" fill="rgba(184,146,74,.22)" transform="rotate(45 16.5 122.5)" />
+          </pattern>
+          <pattern id="fePat2" x="0" y="0" width="120" height="160" patternUnits="userSpaceOnUse" patternTransform="translate(60 80)">
+            <circle cx="40" cy="40" r="1.5" fill="rgba(184,146,74,.2)" />
+            <circle cx="80" cy="120" r="1.5" fill="rgba(196,112,74,.18)" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#fePat)" />
+        <rect width="100%" height="100%" fill="url(#fePat2)" />
+      </svg>
+
+      {/* Center plate to demonstrate readability */}
+      <div style={{
+        position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',
+        background:'rgba(74,24,40,.95)',color:'#F5EDE3',
+        padding:'20px 26px',borderRadius:14,
+        display:'flex',flexDirection:'column',alignItems:'center',
+        boxShadow:'0 12px 30px rgba(74,24,40,.25)',
+        maxWidth:'86%',
+      }}>
+        <span style={{
+          fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.4em',
+          textTransform:'uppercase',color:'#B8924A',fontWeight:500,whiteSpace:'nowrap',
+        }}>WhatsApp Business</span>
+        <div style={{
+          marginTop:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:18,color:'#F5EDE3',textAlign:'center',lineHeight:1.25,
+        }}>Olá! Respondo em algumas<br/>horas no mesmo dia.</div>
+        <div style={{
+          marginTop:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:'italic',
+          fontSize:13,color:'rgba(232,168,130,.8)',
+        }}>— Fê</div>
+      </div>
+
+      {/* corner tag */}
+      <div style={{
+        position:'absolute',bottom:14,left:0,right:0,textAlign:'center',
+        fontFamily:"'Jost',sans-serif",fontSize:8,letterSpacing:'.34em',
+        textTransform:'uppercase',color:'#9B4A5A',fontWeight:500,
+      whiteSpace:'nowrap'}}>papel de parede · WhatsApp</div>
+    </div>
+  );
+}
+
+Object.assign(window, { Recibo, Etiqueta, WhatsWall });
+
+
+// ===== APP =====
+function App(){
+  return (
+    <DesignCanvas>
+      <DCSection id="marca" title="Marca" subtitle="Sistema de logotipo, paleta, tipografia">
+        <DCArtboard id="lockup-principal" label="Lockup principal" width={680} height={400}>
+          <window.LockupPrimary />
+        </DCArtboard>
+        <DCArtboard id="lockup-stacked" label="Lockup vertical · sobre vinho" width={400} height={500}>
+          <window.LockupStacked />
+        </DCArtboard>
+        <DCArtboard id="monograma" label="Monograma F" width={400} height={400}>
+          <window.MonogramaF />
+        </DCArtboard>
+        <DCArtboard id="selo" label="Selo circular" width={400} height={400}>
+          <window.Selo22 />
+        </DCArtboard>
+        <DCArtboard id="lockup-mini" label="Mini lockup horizontal" width={680} height={140}>
+          <window.LockupMini />
+        </DCArtboard>
+        <DCArtboard id="paleta" label="Paleta de cores" width={1080} height={300}>
+          <window.Paleta />
+        </DCArtboard>
+        <DCArtboard id="tipografia" label="Tipografia · Cormorant + Jost" width={1080} height={520}>
+          <window.Tipografia />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="cartao" title="Cartão de visita" subtitle="9 × 5 cm · frente e verso · duas direções">
+        <DCArtboard id="cartao-a-frente" label="A · Frente · vinho" width={540} height={300}>
+          <window.CartaoAFrente />
+        </DCArtboard>
+        <DCArtboard id="cartao-a-verso" label="A · Verso · creme" width={540} height={300}>
+          <window.CartaoAVerso />
+        </DCArtboard>
+        <DCArtboard id="cartao-b-frente" label="B · Frente · creme" width={540} height={300}>
+          <window.CartaoBFrente />
+        </DCArtboard>
+        <DCArtboard id="cartao-b-verso" label="B · Verso · vinho escuro" width={540} height={300}>
+          <window.CartaoBVerso />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="flyer" title="Flyer · Tabela de valores" subtitle="A5 vertical (impressão) + Stories (digital)">
+        <DCArtboard id="flyer-a5" label="A5 · impressão · 14,8 × 21 cm" width={560} height={794}>
+          <window.FlyerA5 />
+        </DCArtboard>
+        <DCArtboard id="flyer-story" label="Stories · resumo · 1080 × 1920" width={380} height={675}>
+          <window.FlyerStory />
+        </DCArtboard>
+        <DCArtboard id="tabela-1" label="Destaques · Mãos &amp; sobrancelha" width={380} height={675}>
+          <window.StoryTabela1 />
+        </DCArtboard>
+        <DCArtboard id="tabela-2" label="Destaques · Pele &amp; depilação" width={380} height={675}>
+          <window.StoryTabela2 />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="ig-feed" title="Instagram · Feed" subtitle="6 templates · 1080 × 1350 (4:5)">
+        <DCArtboard id="feed-1" label="01 · Apresentação" width={432} height={540}>
+          <window.FeedApresentacao />
+        </DCArtboard>
+        <DCArtboard id="feed-2" label="02 · Serviço &amp; preço" width={432} height={540}>
+          <window.FeedServico />
+        </DCArtboard>
+        <DCArtboard id="feed-3" label="03 · Depoimento" width={432} height={540}>
+          <window.FeedDepoimento />
+        </DCArtboard>
+        <DCArtboard id="feed-4" label="04 · Dica · vegano" width={432} height={540}>
+          <window.FeedDica />
+        </DCArtboard>
+        <DCArtboard id="feed-5" label="05 · Agenda da semana" width={432} height={540}>
+          <window.FeedAgenda />
+        </DCArtboard>
+        <DCArtboard id="feed-6" label="06 · Citação" width={432} height={540}>
+          <window.FeedCitacao />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="ig-stories" title="Instagram · Stories" subtitle="3 templates · 1080 × 1920">
+        <DCArtboard id="story-1" label="01 · Agendamento" width={380} height={675}>
+          <window.StoryAgendar />
+        </DCArtboard>
+        <DCArtboard id="story-2" label="02 · Antes &amp; depois" width={380} height={675}>
+          <window.StoryAntesDepois />
+        </DCArtboard>
+        <DCArtboard id="story-3" label="03 · Dica rápida" width={380} height={675}>
+          <window.StoryDica />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="perfil" title="Foto de perfil · Instagram" subtitle="Versões circulares 1080 × 1080 — escolha uma">
+        <DCArtboard id="perfil-monograma" label="A · Monograma F" width={300} height={300}>
+          <window.ProfilePicMonograma />
+        </DCArtboard>
+        <DCArtboard id="perfil-selo" label="B · Selo circular" width={300} height={300}>
+          <window.ProfilePicSelo />
+        </DCArtboard>
+        <DCArtboard id="perfil-letras" label="C · Logotipo completo" width={300} height={300}>
+          <window.ProfilePicLetras />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="destaques" title="Destaques (Highlights)" subtitle="9 capas · ícones lineares · 1080 × 1080">
+        <DCArtboard id="h-precos" label="Serviços" width={220} height={220}><window.HighlightCover label="Serviços" icon="precos" /></DCArtboard>
+        <DCArtboard id="h-unhas" label="Unhas" width={220} height={220}><window.HighlightCover label="Unhas" icon="unhas" /></DCArtboard>
+        <DCArtboard id="h-sobrancelha" label="Sobrancelha" width={220} height={220}><window.HighlightCover label="Sobrancelha" icon="sobrancelha" /></DCArtboard>
+        <DCArtboard id="h-pele" label="Pele" width={220} height={220}><window.HighlightCover label="Pele" icon="pele" /></DCArtboard>
+        <DCArtboard id="h-depilacao" label="Depilação" width={220} height={220}><window.HighlightCover label="Depilação" icon="depilacao" /></DCArtboard>
+        <DCArtboard id="h-vegano" label="Vegano" width={220} height={220}><window.HighlightCover label="Vegano" icon="vegano" /></DCArtboard>
+        <DCArtboard id="h-sobre" label="Sobre" width={220} height={220}><window.HighlightCover label="Sobre" icon="sobre" /></DCArtboard>
+        <DCArtboard id="h-horarios" label="Horários" width={220} height={220}><window.HighlightCover label="Horários" icon="horarios" /></DCArtboard>
+        <DCArtboard id="h-contato" label="Contato" width={220} height={220}><window.HighlightCover label="Contato" icon="contato" /></DCArtboard>
+      </DCSection>
+
+      <DCSection id="papelaria" title="Papelaria & bônus" subtitle="Recibo, etiqueta, wallpaper de WhatsApp">
+        <DCArtboard id="recibo" label="Cabeçalho de recibo · A5" width={560} height={400}>
+          <window.Recibo />
+        </DCArtboard>
+        <DCArtboard id="etiqueta" label="Etiqueta · saquinho" width={300} height={400}>
+          <window.Etiqueta />
+        </DCArtboard>
+        <DCArtboard id="whats-wall" label="WhatsApp Business · wallpaper" width={380} height={675}>
+          <window.WhatsWall />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+</body>
+</html>
