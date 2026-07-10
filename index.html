@@ -187,6 +187,15 @@
   .space-feature .t{font-family:'Yeseva One',serif;font-size:16.5px;color:var(--creme);display:block;margin-bottom:2px}
   .space-feature .d{font-size:13px;color:var(--marfim)}
 
+  .manifesto{background:var(--terracota-dark);color:var(--creme);position:relative;overflow:hidden;text-align:center}
+  .manifesto .tile-bg{position:absolute;inset:0;background-size:140px;opacity:.07}
+  .manifesto .container{position:relative;z-index:1;max-width:800px}
+  .manifesto .eyebrow{color:var(--mostarda);justify-content:center;margin-bottom:24px}
+  .manifesto .eyebrow::before{background:var(--mostarda)}
+  .manifesto h2{font-family:'Yeseva One',serif;font-size:clamp(28px,3.6vw,42px);line-height:1.35;color:var(--creme);margin-bottom:32px}
+  .manifesto p{font-size:17px;line-height:1.85;color:var(--marfim);max-width:680px;margin:0 auto 44px}
+  .manifesto .closing{font-family:'Yeseva One',serif;font-style:italic;font-size:19px;line-height:1.6;color:var(--creme);max-width:600px;margin:0 auto}
+
   /* ============ Contato ============ */
   .contact-layout{display:flex;flex-wrap:wrap;gap:60px}
   .contact-info{flex:1;min-width:300px}
@@ -263,6 +272,7 @@
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#espaco">O Espaço</a></li>
+      <li><a href="#manifesto">Manifesto</a></li>
       <li><a href="#contato">Contato</a></li>
       <li><a href="#contato" class="btn btn-primary">Agendar horário</a></li>
     </ul>
@@ -276,6 +286,7 @@
   <a href="#sobre">Sobre</a>
   <a href="#servicos">Serviços</a>
   <a href="#espaco">O Espaço</a>
+  <a href="#manifesto">Manifesto</a>
   <a href="#contato">Contato</a>
   <a href="#contato" class="btn btn-primary">Agendar horário</a>
 </div>
@@ -427,6 +438,17 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section id="manifesto" class="manifesto">
+  <div class="tile-bg"></div>
+  <div class="container">
+    <div class="eyebrow">Por que essa marca é assim</div>
+    <h2>A gente não nasceu pra ser discreto. A gente nasceu pra receber, pra encher a mesa, pra abraçar quem chega.</h2>
+    <p>Durante muito tempo, calor humano foi tratado como o oposto de sofisticação. Aqui, é a nossa sofisticação. Essa cor toda é um jeito de dizer: você pode ser inteira, com sotaque, com história, com afeto — porque respeito é o piso, não o teto.</p>
+    <div class="closing">Não é só uma marca nova. É a Fê trabalhando por conta própria, do seu jeito, sem pedir licença pra ser quem é.</div>
   </div>
 </section>
 
