@@ -3,8 +3,61 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JV5DEFTXF5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JV5DEFTXF5');
+</script>
+
 <title>Fê Silva — Estética & Bem-Estar</title>
-<meta name="description" content="Fê Silva — Estética & Bem-Estar. 22 anos cuidando de você. Florianópolis, SC." />
+<meta name="description" content="Fê Silva — Estética & Bem-Estar. 22 anos cuidando de você. Manicure, pedicure, limpeza de pele, depilação e sobrancelha em Florianópolis, SC, com opção de produtos veganos e atendimento 1:1 por agendamento." />
+<link rel="canonical" href="https://fesilva.com.br/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="business.business" />
+<meta property="og:site_name" content="Fê Silva — Estética & Bem-Estar" />
+<meta property="og:url" content="https://fesilva.com.br/" />
+<meta property="og:title" content="Fê Silva — Estética & Bem-Estar" />
+<meta property="og:description" content="22 anos cuidando de você — agora no cantinho só dela. Manicure, pedicure, limpeza de pele, depilação e sobrancelha em Florianópolis, SC." />
+<meta property="og:image" content="https://fesilva.com.br/img/hero.jpg" />
+<meta property="og:locale" content="pt_BR" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fê Silva — Estética & Bem-Estar" />
+<meta name="twitter:description" content="22 anos cuidando de você — agora no cantinho só dela. Florianópolis, SC." />
+<meta name="twitter:image" content="https://fesilva.com.br/img/hero.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Fê Silva — Estética & Bem-Estar",
+  "image": "https://fesilva.com.br/img/hero.jpg",
+  "url": "https://fesilva.com.br/",
+  "telephone": "+5548991535377",
+  "priceRange": "R$25 - R$230",
+  "description": "Salão de estética em Florianópolis, SC — manicure, pedicure, limpeza de pele, depilação e sobrancelha, com opção de produtos veganos e atendimento 1:1 por agendamento. Atendimento a domicílio disponível.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Florianópolis",
+    "addressRegion": "SC",
+    "addressCountry": "BR"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Florianópolis"
+  },
+  "sameAs": [
+    "https://instagram.com/fesilva_estetica"
+  ]
+}
+</script>
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23C0522D'/%3E%3Cpath d='M50 14 L86 50 L50 86 L14 50 Z' fill='none' stroke='%23FBF0DD' stroke-width='4.5'/%3E%3Ccircle cx='50' cy='26' r='8' fill='%23D9A62B'/%3E%3Ccircle cx='50' cy='74' r='8' fill='%23D9A62B'/%3E%3Ccircle cx='26' cy='50' r='8' fill='%23D9A62B'/%3E%3Ccircle cx='74' cy='50' r='8' fill='%23D9A62B'/%3E%3Ccircle cx='50' cy='50' r='19' fill='%23FBF0DD'/%3E%3Ctext x='50' y='59' font-family='Georgia,serif' font-size='22' fill='%23C0522D' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -587,7 +640,14 @@
     const texto = `Olá, Fê! Me chamo ${nome}.\n\nTenho interesse em: ${servico}\n`
       + (contato ? `Contato: ${contato}\n` : '')
       + (msg ? `\n${msg}` : '');
+    if (typeof gtag === 'function') gtag('event', 'generate_lead', { method: 'formulario', servico });
     window.open('https://wa.me/5548991535377?text=' + encodeURIComponent(texto), '_blank');
+  });
+
+  document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+    a.addEventListener('click', () => {
+      if (typeof gtag === 'function') gtag('event', 'generate_lead', { method: 'whatsapp_direto' });
+    });
   });
 </script>
 </body>
