@@ -144,9 +144,13 @@
   /* ============ Hero ============ */
   .hero{
     position:relative;min-height:100vh;padding:150px 40px 80px;
-    display:flex;flex-wrap:wrap;gap:60px;align-items:center;overflow:hidden;
+    overflow:hidden;
   }
   .hero .tile-bg{position:absolute;inset:0;z-index:0;background-size:120px;opacity:.14}
+  .hero-inner{
+    position:relative;z-index:1;max-width:1240px;margin:0 auto;
+    display:flex;flex-wrap:wrap;gap:60px;align-items:center;
+  }
   .hero-content{position:relative;z-index:1;flex:1.1;min-width:320px;max-width:580px}
   .hero-content h1{font-family:'Yeseva One',serif;font-size:clamp(44px,6vw,74px);line-height:1.05;color:var(--terracota-dark);margin-bottom:18px}
   .hero-tag{font-family:'Yeseva One',serif;font-size:24px;color:var(--turquesa);margin-bottom:26px}
@@ -387,6 +391,7 @@
 <!-- ============ HERO ============ -->
 <section id="inicio" class="hero">
   <div class="tile-bg"></div>
+  <div class="hero-inner">
   <div class="hero-content">
     <div class="eyebrow">Florianópolis, SC</div>
     <h1 class="serif">Fê Silva</h1>
@@ -408,6 +413,7 @@
       <div class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FBF0DD" stroke-width="1.6"><path d="M12 22c0-6 4-12 10-12-2 6-6 12-10 12zm0 0c0-6-4-12-10-12 2 6 6 12 10 12z"/></svg></div>
       <div class="txt"><strong>Opção vegana</strong>Em todos os serviços</div>
     </div>
+  </div>
   </div>
 </section>
 
