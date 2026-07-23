@@ -249,6 +249,44 @@
   .manifesto p{font-size:17px;line-height:1.85;color:var(--marfim);max-width:680px;margin:0 auto 44px}
   .manifesto .closing{font-family:'Yeseva One',serif;font-style:italic;font-size:19px;line-height:1.6;color:var(--creme);max-width:600px;margin:0 auto}
 
+  /* ============ Depoimentos ============ */
+  .testimonials{background:var(--marfim)}
+  .testi-header{max-width:700px;margin:0 auto 20px}
+  .google-badge{
+    display:inline-flex;align-items:center;gap:12px;background:var(--creme);
+    padding:13px 22px;border-radius:100px;box-shadow:var(--shadow-md);margin-bottom:28px;
+  }
+  .google-badge .stars{color:#F4B400;font-size:15px;letter-spacing:1px}
+  .google-badge b{font-family:'Yeseva One',serif;color:var(--ink);font-size:15px;font-weight:400}
+  .google-badge a{font-size:12.5px;color:var(--terracota);font-weight:600;text-decoration:none;margin-left:4px}
+  .google-badge a:hover{color:var(--terracota-dark)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .testi-card{
+    background:var(--creme);border-radius:18px;padding:28px;box-shadow:var(--shadow-md);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .testi-stars{color:#F4B400;font-size:15px;letter-spacing:2px}
+  .testi-quote{font-size:14px;line-height:1.7;color:var(--ink);flex:1}
+  .testi-author{display:flex;align-items:center;gap:11px;padding-top:14px;border-top:1px solid var(--line-soft)}
+  .testi-avatar{
+    width:38px;height:38px;border-radius:50%;background:var(--terracota);color:var(--creme);
+    display:flex;align-items:center;justify-content:center;font-family:'Yeseva One',serif;
+    font-size:14px;flex-shrink:0;
+  }
+  .testi-name{font-family:'Yeseva One',serif;font-size:14.5px;color:var(--ink);display:block}
+  .testi-tag{font-size:11px;color:var(--madeira)}
+  .testi-hint{display:none;font-size:12.5px;color:var(--madeira);text-align:center;margin-top:18px}
+  @media (max-width:900px){
+    .testi-grid{
+      display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;
+      gap:16px;padding:4px 4px 10px;margin-left:-4px;margin-right:-4px;
+      scrollbar-width:none;-ms-overflow-style:none;
+    }
+    .testi-grid::-webkit-scrollbar{display:none}
+    .testi-card{flex:0 0 82%;scroll-snap-align:center}
+    .testi-hint{display:block}
+  }
+
   /* ============ Contato ============ */
   .contact-layout{display:flex;flex-wrap:wrap;gap:60px}
   .contact-info{flex:1;min-width:300px}
@@ -326,6 +364,7 @@
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#espaco">O Espaço</a></li>
       <li><a href="#manifesto">Manifesto</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
       <li><a href="#contato">Contato</a></li>
       <li><a href="#contato" class="btn btn-primary">Agendar horário</a></li>
     </ul>
@@ -340,6 +379,7 @@
   <a href="#servicos">Serviços</a>
   <a href="#espaco">O Espaço</a>
   <a href="#manifesto">Manifesto</a>
+  <a href="#depoimentos">Depoimentos</a>
   <a href="#contato">Contato</a>
   <a href="#contato" class="btn btn-primary">Agendar horário</a>
 </div>
@@ -502,6 +542,79 @@
     <h2>A gente não nasceu pra ser discreto. A gente nasceu pra receber, pra encher a mesa, pra abraçar quem chega.</h2>
     <p>Durante muito tempo, calor humano foi tratado como o oposto de sofisticação. Aqui, é a nossa sofisticação. Essa cor toda é um jeito de dizer: você pode ser inteira, com sotaque, com história, com afeto — porque respeito é o piso, não o teto.</p>
     <div class="closing">Não é só uma marca nova. É a Fê trabalhando por conta própria, do seu jeito, sem pedir licença pra ser quem é.</div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section id="depoimentos" class="testimonials">
+  <div class="container">
+    <div class="testi-header">
+      <div class="eyebrow">O que dizem por aí</div>
+      <h2 class="section-title">Carinho de quem já passou pela cadeira.</h2>
+      <div class="google-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.63h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.88c2.27-2.09 3.57-5.17 3.57-8.81z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.92l-3.88-3c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.96H1.26v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54v-3.1H1.26a12 12 0 0 0 0 10.74l4.01-3.1z"/><path fill="#EA4335" d="M12 4.77c1.77 0 3.35.61 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.26 6.63l4.01 3.1C6.22 6.88 8.87 4.77 12 4.77z"/></svg>
+        <span class="stars">★★★★★</span>
+        <b>5,0</b>
+        <a href="https://g.page/r/CcEf2ucsd9TqEBl/review" target="_blank" rel="noopener">Ver avaliações no Google →</a>
+      </div>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Fernanda é um profissional maravilhosa, atenta a todos os detalhes do seu fazer, desde os procedimentos de esterilização e higienização dos seus materiais, até a variedade e qualidade de seus esmaltes. Além da competência técnica, Fernanda é uma pessoa especial, mulher incrível, dessas que a gente fica feliz de encontrar!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AP</div>
+          <div><span class="testi-name">Adriana Pimenta</span><span class="testi-tag">Google · Manicure</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"A Fê sempre nos atendeu com muito profissionalismo e muito cuidado. É ótima com adolescentes na época das espinhas, faz uma limpeza de pele vegana maravilhosa!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">FB</div>
+          <div><span class="testi-name">Fernanda G. Bagatoli</span><span class="testi-tag">Google · Limpeza de pele</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Ser cliente da Fê é se sentir muito especial sempre! Faço depilação, faço as unhas das mãos e pés há muito tempo com ela e o trabalho dela é impecável, além de me tratar super bem! Uma excelente profissional!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MC</div>
+          <div><span class="testi-name">Maria Luiza Cunha</span><span class="testi-tag">Google Local Guide</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"A Fê é uma profissional incrível! Muito detalhista, cuidadosa, paciente e com produtos excelentes. Profissional de confiança e trabalho impecável ♥️"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">JB</div>
+          <div><span class="testi-name">Juliana Bolda</span><span class="testi-tag">Google Local Guide</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"O atendimento com a Fê é de excelência. Tem um atendimento personalizado que facilita nossa vida. Dedicação, profissionalismo e amor. Gratidão 🙏"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">EB</div>
+          <div><span class="testi-name">Eliani G. Bagatoli</span><span class="testi-tag">Google Local Guide</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"A Fernanda é maravilhosa, sempre pontual, delicada, habilidosa e ágil no trabalho que faz! Adoro e super recomendo!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">BZ</div>
+          <div><span class="testi-name">Berenice Zottis</span><span class="testi-tag">Google</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-hint">← arraste para o lado para ver mais →</div>
   </div>
 </section>
 
